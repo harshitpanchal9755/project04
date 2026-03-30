@@ -39,15 +39,10 @@ public class TestGiftcardModel {
 		}
 		catch(ApplicationException e) {
 			e.printStackTrace();
-			throw new ApplicationException("Exception is ")
+			throw new ApplicationException("Exception is ");
 		
 		}
 	
-		
-		
-		
-		
-		
 	}
 
 	private static void testfindBypk() throws Exception {

@@ -21,9 +21,9 @@ public class TestRoleModel {
 //		testdelete();
 		// testnextPk();
 //		testupdate();
-//		testfindBypk();
+		testfindBypk();
 //		testfindByName();
-		testsearch();
+//		testsearch();
 
 	}
 
@@ -69,7 +69,7 @@ public class TestRoleModel {
 
 	private static void testfindBypk() {
 		try {
-			RoleBean bean = model.findBypk(3L);
+			RoleBean bean = model.findBypk(2L);
 			if (bean == null) {
 				System.out.println("Test Find By PK fail");
 			}
@@ -88,7 +88,9 @@ public class TestRoleModel {
 			bean.setName("student");
 			model.update(bean);
 
-		} catch (ApplicationException | DuplicateException e) {
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		}catch(DuplicateException e) {
 			e.printStackTrace();
 		}
 	}
@@ -122,8 +124,8 @@ public class TestRoleModel {
 
 		RoleBean bean = new RoleBean();
 
-		bean.setName("harshit");
-		bean.setDescription("Medicaps");
+		bean.setName("Admin");
+		bean.setDescription("developer");
 		bean.setCreatedBy("root");
 		bean.setModifiedBy("root");
 		bean.setCreatedDateTime(new Timestamp(new Date().getTime()));

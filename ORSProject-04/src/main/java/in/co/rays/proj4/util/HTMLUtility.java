@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import in.co.rays.proj4.model.RoleModel;
-
-import in.co.rays.proj4.model.DropdownListBean;
+import in.co.rays.proj4.model.UserModel;
 
 public class HTMLUtility {
 
@@ -32,37 +31,37 @@ public class HTMLUtility {
 		return sb.toString();
 	}
 
-	public static String getList(String name, String selectedVal, List list) {
-
-		// Collections.sort(list);
-
-		List<DropdownListBean> dd = (List<DropdownListBean>) list;
-
-		StringBuffer sb = new StringBuffer("<select style=\"width: 169px;text-align-last: center;\"; "
-				+ "class='form-control' name='" + name + "'>");
-
-		sb.append("\n<option selected value=''>-------------Select-------------</option>");
-
-		String key = null;
-		String val = null;
-
-		for (DropdownListBean obj : dd) {
-			key = obj.getKey();
-			val = obj.getValue();
-
-			if (key.trim().equals(selectedVal)) {
-				sb.append("\n<option selected value='" + key + "'>" + val + "</option>");
-			} else {
-				sb.append("\n<option value='" + key + "'>" + val + "</option>");
-			}
-		}
-		sb.append("\n</select>");
-		return sb.toString();
-	}
+//	public static String getList(String name, String selectedVal, List list) {
+//
+//		// Collections.sort(list);
+//
+//		List<DropdownListBean> dd = (List<DropdownListBean>) list;
+//
+//		StringBuffer sb = new StringBuffer("<select style=\"width: 169px;text-align-last: center;\"; "
+//				+ "class='form-control' name='" + name + "'>");
+//
+//		sb.append("\n<option selected value=''>-------------Select-------------</option>");
+//
+//		String key = null;
+//		String val = null;
+//
+//		for (DropdownListBean obj : dd) {
+//			key = obj.getKey();
+//			val = obj.getValue();
+//
+//			if (key.trim().equals(selectedVal)) {
+//				sb.append("\n<option selected value='" + key + "'>" + val + "</option>");
+//			} else {
+//				sb.append("\n<option value='" + key + "'>" + val + "</option>");
+//			}
+//		}
+//		sb.append("\n</select>");
+//		return sb.toString();
+//	}
 
 	public static void testGetListByMap() {
 
-		HashMap<String, String> map = new HashMap<>();
+		HashMap<String, String> map = new HashMap();
 		map.put("male", "male");
 		map.put("female", "female");
 
@@ -76,7 +75,7 @@ public class HTMLUtility {
 
 		RoleModel model = new RoleModel();
 
-		// UserModel model = new UserModel();
+		 UserModel user = new UserModel();
 
 		List list = model.list();
 
@@ -84,14 +83,16 @@ public class HTMLUtility {
 
 		String htmlSelectFromList = HTMLUtility.getList("role", selectedValue, list);
 
-		System.out.println(htmlSelectFromList);
+	System.out.println(htmlSelectFromList);
 	}
 
 	public static void main(String[] args) throws Exception {
 
-		// testGetListByMap();
+		HashMap map = new HashMap();
+		map.put("male", "male");
+		map.put("female", "female");
 
-		testGetListByList();
+		System.out.println(HTMLUtility.getList("gender", DataUtility.getStringData(null), map));
 
 	}
 }

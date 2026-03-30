@@ -45,13 +45,6 @@ public class UserModel {
 		Connection conn = null;
 		int pk = 0;
 
-		UserBean existbean = findByLogin(bean.getLogin());
-
-		if (existbean != null) {
-			throw new DuplicateException("login id already exist");
-
-		}
-
 		try {
 			pk = nextpk();
 			conn = JdbcDataSource.getConnection();

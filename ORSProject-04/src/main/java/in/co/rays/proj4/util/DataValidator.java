@@ -23,7 +23,7 @@ public class DataValidator {
 				Integer.parseInt(val);
 				return true;
 
-			} catch (Exception e) {
+			} catch (NumberFormatException e) {
 				return false;
 			}
 		} else {
@@ -102,6 +102,13 @@ public class DataValidator {
 			}else {
 				return false;
 		}
+	}
+	
+	public static boolean isPasswordLength(String val) {
+		if(isNotNull(val)&& val.length() > 8 && val.length() < 12) {
+			return true;
+		}
+		return false;
 	}
 	
 	public static boolean isPhoneNo(String val) {
