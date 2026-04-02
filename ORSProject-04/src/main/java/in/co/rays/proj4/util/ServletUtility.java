@@ -12,7 +12,6 @@ import in.co.rays.proj4.controller.BaseCtl;
 import in.co.rays.proj4.controller.ORSView;
 
 public class ServletUtility {
-
 	public static void forward(String page, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		RequestDispatcher rd = request.getRequestDispatcher(page);

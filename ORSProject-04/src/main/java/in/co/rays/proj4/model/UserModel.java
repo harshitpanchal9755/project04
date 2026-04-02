@@ -44,6 +44,11 @@ public class UserModel {
 
 		Connection conn = null;
 		int pk = 0;
+		
+		UserBean beanexist = findByLogin(bean.getLogin());
+		if(beanexist != null) {
+			throw new DuplicateException("Login already exist");
+		}
 
 		try {
 			pk = nextpk();
@@ -88,8 +93,8 @@ public class UserModel {
 
 		UserBean beanExist = findByLogin(bean.getLogin());
 
-		if (beanExist == null) {
-			throw new DuplicateException("Login Id is already exist");
+		if (beanExist != null) {
+			throw new DuplicateException("Login already exist");
 		}
 
 		try {
@@ -232,6 +237,7 @@ public class UserModel {
 
 		UserBean bean = null;
 		Connection conn = null;
+		
 
 		StringBuffer sql = new StringBuffer("select * from st_user where login = ? and password = ?");
 

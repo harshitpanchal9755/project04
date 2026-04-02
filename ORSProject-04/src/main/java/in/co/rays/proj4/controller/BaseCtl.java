@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 
 import in.co.rays.proj4.bean.BaseBean;
@@ -13,8 +14,8 @@ import in.co.rays.proj4.util.DataUtility;
 import in.co.rays.proj4.util.DataValidator;
 import in.co.rays.proj4.util.ServletUtility;
 
-public abstract class BaseCtl extends HttpServlet{
-	
+public abstract class BaseCtl extends HttpServlet {
+
 	public static final String OP_SAVE = "Save";
 	public static final String OP_UPDATE = "Update";
 	public static final String OP_CANCEL = "Cancel";
@@ -29,46 +30,47 @@ public abstract class BaseCtl extends HttpServlet{
 	public static final String OP_BACK = "Back";
 	public static final String OP_RESET = "Reset";
 	public static final String OP_LOG_OUT = "Logout";
-	
+
 	public static final String MSG_SUCCESS = "success";
 	public static final String MSG_ERROR = "error";
-	
+
 	protected boolean validate(HttpServletRequest request) {
 		return true;
-		
+
 	}
-	
-	protected void preload(HttpServletRequest req) {
-		
+
+	protected void preload(HttpServletRequest request) {
+
 	}
-	
-	protected BaseBean populate(HttpServletRequest req) {
+
+	protected BaseBean populateBean(HttpServletRequest request) {
 		return null;
-	       
+
 	}
-	
-	protected BaseBean populateDTO(BaseBean dto, HttpServletRequest req) {
-		
-		String createdBy = req.getParameter("createdBy");
+
+	protected BaseBean populateDTO(BaseBean dto, HttpServletRequest request) {
+
+		String createdBy = request.getParameter("createdBy");
 		String modifiedBy = null;
-		
-		UserBean userBean = (UserBean) req.getSession().getAttribute("user");
-		
-		if(userBean == null) {
+
+		UserBean userBean = (UserBean) request.getSession().getAttribute("user");
+
+		if (userBean == null) {
 			createdBy = "root";
 			modifiedBy = "root";
-			
-		}else {
+
+		} else {
 			modifiedBy = userBean.getLogin();
-			
-			if("null".equalsIgnoreCase(createdBy) || DataValidator.isNull(createdBy));
+
+			if ("null".equalsIgnoreCase(createdBy) || DataValidator.isNull(createdBy))
+				;
 			createdBy = modifiedBy;
 		}
-		
+
 		dto.setCreatedBy(createdBy);
 		dto.setModifiedBy(modifiedBy);
-		
-		long cdt = DataUtility.getLong(req.getParameter("createdDatetime"));
+
+		long cdt = DataUtility.getLong(request.getParameter("createdDatetime"));
 
 		if (cdt > 0) {
 			dto.setCreatedDateTime(DataUtility.getTimestamp(cdt));
@@ -84,6 +86,7 @@ public abstract class BaseCtl extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		System.out.println("in baseCtl service method");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
@@ -99,10 +102,5 @@ public abstract class BaseCtl extends HttpServlet{
 	}
 
 	protected abstract String getView();
-	
-		
-	}
-	
-	
 
-
+}

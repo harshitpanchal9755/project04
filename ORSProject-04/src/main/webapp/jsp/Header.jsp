@@ -21,13 +21,11 @@
 		(<%=session.getAttribute("role")%>)
 	</h3>
 	
-	<a href="#"><b>Add User</b></a>
+	<a href="<%= ORSView.USER_CTL%>"><b>Add User</b></a>
 	<b>|</b>
-	<a href="#"><b>User List</b></a>
+	<a href="<%= ORSView.USER_LIST_CTL%>"><b>User List</b></a>
 	<b>|</b>
-	<a href="#"><b>Add Role</b></a>
-	<b>|</b>
-	<a href="#"><b>Role List</b></a>
+	<a href="<%=ORSView.ROLE_CTL%>"><b>Add Role</b></a>
 	<b>|</b>
 	<a href="<%=ORSView.LOGIN_CTL + "?operation=Logout"%>"><b>Logout</b></a>
 	<%
@@ -37,8 +35,7 @@
 
 	<h3>Hi, Guest</h3>
 	<a href="<%=ORSView.WELCOME_CTL%>"><b>Welcome</b></a> |
-	<a href="<%=ORSView.LOGIN_CTL%>"><b>Login</b></a> |
-	<a href="<%=ORSView.USER_REGISTRATION_CTL%>">SignUp</a>
+	<a href="<%=ORSView.LOGIN_CTL%>"><b>Login</b></a>
 		<%
 	}
 	%>

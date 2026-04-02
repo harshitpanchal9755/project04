@@ -17,112 +17,114 @@ import in.co.rays.proj4.model.UserModel;
 import in.co.rays.proj4.util.DataUtility;
 import in.co.rays.proj4.util.DataValidator;
 import in.co.rays.proj4.util.ServletUtility;
+
 @WebServlet("/LoginCtl")
-public class LoginCtl extends BaseCtl{
-	public static  final String OP_SIGN_IN = "SignIn";
-	public static final String OP_SIGN_UP = "SignUp";
-	public static final String OP_LOG_OUT = "LogOut";
-	
-	protected boolean validate(HttpServletRequest req) {
-		
+public class LoginCtl extends BaseCtl {
+	public static final String OP_REGISTER = "Register";
+	public static final String OP_SIGN_IN = "Sign In";
+	public static final String OP_SIGN_UP = "Sign up";
+	public static final String OP_LOG_OUT = "Logout";
+
+	@Override
+	protected boolean validate(HttpServletRequest request) {
 		boolean pass = true;
-		String op = req.getParameter("operation");
-		
-		if(OP_SIGN_IN.equals(op) || OP_LOG_OUT.equals(op)) {
+		String op = request.getParameter("operation");
+
+		if (OP_SIGN_UP.equalsIgnoreCase(op) || OP_LOG_OUT.equalsIgnoreCase(op)) {
 			return pass;
+
 		}
-		
-	if(DataValidator.isNull(req.getParameter("login"))) {
-		req.setAttribute("login", "login is required");
-		pass = false;
-		
-	}
-	
-	if(DataValidator.isNull(req.getParameter("password"))) {
-		req.setAttribute("password", "password is requird");
-		pass = false;
-		
-	}else if(!DataValidator.isPasswordLength(req.getParameter("password"))) {
-		req.setAttribute("password", "should  be 8-12 char");
-		pass = false;
-		
-	}else if(!DataValidator.isPassword(req.getParameter("password"))) {
-		req.setAttribute("password", "must contain password to be uppercae and lowercase");
-		pass = false;
-	}
-		
+
+		if (DataValidator.isNull(request.getParameter("login"))) {
+			request.setAttribute("login", "Login is required");
+			pass = false;
+		}else if(!DataValidator.isEmail(request.getParameter("login"))) {
+			request.setAttribute("login", "Error is email");
+			pass = false;
+		}
+
+		if (DataValidator.isNull(request.getParameter("password"))) {
+			request.setAttribute("password", "Password is required");
+			pass = false;
+
+		}
+
 		return pass;
-		
 	}
-	
-	protected BaseBean populatedBean(HttpServletRequest req) {
-		
+
+
+	@Override
+	protected BaseBean populateBean(HttpServletRequest request) {
 		UserBean bean = new UserBean();
-	
-		bean.setLogin(DataUtility.getString(req.getParameter("login")));
-		bean.setPassword(DataUtility.getString(req.getParameter("password")));
+
+		bean.setLogin(DataUtility.getString(request.getParameter("login")));
+		bean.setPassword(DataUtility.getString(request.getParameter("password")));
 		return bean;
-		
 	}
-	
+
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String op = DataUtility.getString(req.getParameter("operation"));
-		
-		if(OP_LOG_OUT.equals(op)) {
-			HttpSession session = req.getSession();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+//		System.out.println("hello");
+		String op = DataUtility.getString(request.getParameter("operation"));
+
+		if (OP_LOG_OUT.equalsIgnoreCase(op)) {
+			HttpSession session = request.getSession();
 			session.invalidate();
-			session = req.getSession(true);
-			session.setAttribute("success", "logout is successfull");
+			ServletUtility.setSuccessMessage("Logout is successfull", request);
 		}
-		ServletUtility.forward(getView(), req, resp);
+		ServletUtility.forward(getView(), request, response);
+
 	}
-	
+
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		String op = DataUtility.getString(req.getParameter("operation"));
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String op = DataUtility.getString(request.getParameter("operation"));
+
 		UserModel model = new UserModel();
 		RoleModel role = new RoleModel();
-		HttpSession session = req.getSession();
-		
-		if(OP_SIGN_IN.equalsIgnoreCase(op)) {
-			UserBean bean = (UserBean) populatedBean(req);
-			
+		HttpSession session = request.getSession();
+
+		if (OP_SIGN_IN.equalsIgnoreCase(op)) {
+
+			UserBean bean = (UserBean) populateBean(request);
+
 			try {
 				bean = model.authenticate(bean.getLogin(), bean.getPassword());
-				
-				if(bean != null) {
+
+				if (bean != null) {
 					session.setAttribute("user", bean);
 					RoleBean rolebean = role.findBypk(bean.getRoleid());
-					
-					if(rolebean != null) {
+
+					if (rolebean != null) {
 						session.setAttribute("role", rolebean.getName());
 					}
-					ServletUtility.setSuccessMessage("login successfull id ", req);
-					ServletUtility.redirect(ORSView.WELCOME_CTL, req, resp);
+					ServletUtility.redirect(ORSView.WELCOME_CTL, request, response);
 					return;
-				}else {
-					ServletUtility.setBean(bean, req);
-					ServletUtility.setErrorMessage("Invalid LoginId And Password", req);
+
+				} else {
+					bean = (UserBean) populateBean(request);
+					ServletUtility.setBean(bean, request);
+					ServletUtility.setErrorMessage("Invalid LoginId And Password", request);
 				}
-			}catch (ApplicationException e) {
+			} catch (ApplicationException e) {
 				e.printStackTrace();
 				return;
 			}
 		} else if (OP_SIGN_UP.equalsIgnoreCase(op)) {
-			ServletUtility.redirect(ORSView.USER_REGISTRATION_CTL, req, resp);
+			ServletUtility.redirect(ORSView.USER_REGISTRATION_CTL, request, response);
 			return;
 		}
-		ServletUtility.forward(getView(), req, resp);
+		ServletUtility.forward(getView(), request, response);
 	}
-		
 
 	@Override
 	protected String getView() {
-		// TODO Auto-generated method stub
+
 		return ORSView.LOGIN_VIEW;
+		
 	}
 
 }

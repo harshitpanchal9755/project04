@@ -31,9 +31,10 @@ public class HTMLUtility {
 		return sb.toString();
 	}
 
-//	public static String getList(String name, String selectedVal, List list) {
-//
-//		// Collections.sort(list);
+	public static String getList(String name, String selectedVal, List list) {
+		return selectedVal;
+
+		// Collections.sort(list);
 //
 //		List<DropdownListBean> dd = (List<DropdownListBean>) list;
 //
@@ -57,7 +58,7 @@ public class HTMLUtility {
 //		}
 //		sb.append("\n</select>");
 //		return sb.toString();
-//	}
+	}
 
 	public static void testGetListByMap() {
 

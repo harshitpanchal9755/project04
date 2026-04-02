@@ -86,7 +86,7 @@ public class TestGiftcardModel {
 		
 	}
 
-	private static void testadd() throws ApplicationException, DuplicateException {
+	private static void testadd() throws Exception {
 		GiftcardBean bean = new GiftcardBean();
 		
 		bean.setCode("xc001");
