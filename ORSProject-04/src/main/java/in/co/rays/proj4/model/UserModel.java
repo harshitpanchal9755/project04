@@ -62,7 +62,7 @@ public class UserModel {
 			ps.setString(5, bean.getPassword());
 			ps.setDate(6, new java.sql.Date(bean.getDob().getTime()));
 			ps.setString(7, bean.getMobileNo());
-			ps.setLong(8, bean.getRoleid());
+			ps.setLong(8, bean.getRoleId());
 			ps.setString(9, bean.getGender());
 			ps.setString(10, bean.getCreatedBy());
 			ps.setString(11, bean.getModifiedBy());
@@ -108,7 +108,7 @@ public class UserModel {
 			pstmt.setString(4, bean.getPassword());
 			pstmt.setDate(5, new java.sql.Date(bean.getDob().getTime()));
 			pstmt.setString(6, bean.getMobileNo());
-			pstmt.setLong(7, bean.getRoleid());
+			pstmt.setLong(7, bean.getRoleId());
 			pstmt.setString(8, bean.getGender());
 			pstmt.setString(9, bean.getCreatedBy());
 			pstmt.setString(10, bean.getModifiedBy());
@@ -137,19 +137,12 @@ public class UserModel {
 
 		try {
 			conn = JdbcDataSource.getConnection();
-			conn.setAutoCommit(false);
 			PreparedStatement pstmt = conn.prepareStatement("delete from st_user where id = ?");
 			pstmt.setLong(1, bean.getId());
 			pstmt.executeUpdate();
-			conn.commit();
 			pstmt.close();
 		} catch (Exception e) {
-			try {
-				conn.rollback();
-			} catch (Exception ex) {
-				throw new ApplicationException("Exception : Delete rollback exception " + ex.getMessage());
-			}
-			throw new ApplicationException("Exception : Exception in delete User");
+			e.printStackTrace();
 		} finally {
 			JdbcDataSource.closeConnection(conn);
 		}
@@ -176,7 +169,7 @@ public class UserModel {
 				bean.setPassword(rs.getString(5));
 				bean.setDob(rs.getDate(6));
 				bean.setMobileNo(rs.getString(7));
-				bean.setRoleid(rs.getLong(8));
+				bean.setRoleId(rs.getLong(8));
 				bean.setGender(rs.getString(9));
 				bean.setCreatedBy(rs.getString(10));
 				bean.setModifiedBy(rs.getString(11));
@@ -215,7 +208,7 @@ public class UserModel {
 				bean.setPassword(rs.getString(5));
 				bean.setDob(rs.getDate(6));
 				bean.setMobileNo(rs.getString(7));
-				bean.setRoleid(rs.getLong(8));
+				bean.setRoleId(rs.getLong(8));
 				bean.setGender(rs.getString(9));
 				bean.setCreatedBy(rs.getString(10));
 				bean.setModifiedBy(rs.getString(11));
@@ -256,7 +249,7 @@ public class UserModel {
 				bean.setPassword(rs.getString(5));
 				bean.setDob(rs.getDate(6));
 				bean.setMobileNo(rs.getString(7));
-				bean.setRoleid(rs.getLong(8));
+				bean.setRoleId(rs.getLong(8));
 				bean.setGender(rs.getString(9));
 				bean.setCreatedBy(rs.getString(10));
 				bean.setModifiedBy(rs.getString(11));
@@ -271,6 +264,11 @@ public class UserModel {
 			JdbcDataSource.closeConnection(conn);
 		}
 		return bean;
+	}
+	
+	public List list() throws ApplicationException {
+		return search(null, 0, 0);
+		
 	}
 
 	public List<UserBean> search(UserBean bean, int pageNo, int pageSize) throws ApplicationException {
@@ -302,8 +300,8 @@ public class UserModel {
 			if (bean.getMobileNo() != null && bean.getMobileNo().length() > 0) {
 				sql.append(" and mobile_no = " + bean.getMobileNo());
 			}
-			if (bean.getRoleid() > 0) {
-				sql.append(" and role_id = " + bean.getRoleid());
+			if (bean.getRoleId() > 0) {
+				sql.append(" and role_id = " + bean.getRoleId());
 			}
 			if (bean.getGender() != null && bean.getGender().length() > 0) {
 				sql.append(" and gender like '" + bean.getGender() + "%'");
@@ -328,7 +326,7 @@ public class UserModel {
 				bean.setPassword(rs.getString(5));
 				bean.setDob(rs.getDate(6));
 				bean.setMobileNo(rs.getString(7));
-				bean.setRoleid(rs.getLong(8));
+				bean.setRoleId(rs.getLong(8));
 				bean.setGender(rs.getString(9));
 				bean.setCreatedBy(rs.getString(10));
 				bean.setModifiedBy(rs.getString(11));

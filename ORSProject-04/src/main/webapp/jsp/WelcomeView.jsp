@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Welcome page</title>
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
@@ -18,5 +18,6 @@
 	<h1 align="center">
 		<font size="10px" color="navy">Welcome to Online Result System</font>
 	</h1>
+	<%@ include file="Footer.jsp"%>
 </body>
 </html>

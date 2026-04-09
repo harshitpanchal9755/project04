@@ -31,7 +31,7 @@ public class RoleModel {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new DataBaseException("Exception : Exception in getting pk" + e.getMessage());
+			throw new DataBaseException("Exception in getting pk" + e.getMessage());
 		} finally {
 			JdbcDataSource.closeConnection(conn);
 		}
@@ -74,7 +74,7 @@ public class RoleModel {
 				ex.printStackTrace();
 				throw new ApplicationException("Exception : add rollback exception" + ex.getMessage());
 			}
-			throw new ApplicationException("Exception : exception in add role" + e.getMessage());
+			throw new ApplicationException("Exception : Exception in add role" + e.getMessage());
 		} finally {
 			JdbcDataSource.closeConnection(conn);
 		}
@@ -231,7 +231,7 @@ public class RoleModel {
 		
 	}
 	
-	public List<RoleBean> search(RoleBean bean, int pageSize, int pageNo) throws ApplicationException {
+	public List<RoleBean> search(RoleBean bean, int pageNo, int pageSize) throws ApplicationException {
 		StringBuffer sql = new StringBuffer("select * from st_role where 1=1");
 		
 		if(bean != null) {
@@ -248,7 +248,7 @@ public class RoleModel {
 			}
 			
 			if(bean.getDescription() != null && bean.getDescription().length() > 0) {
-				sql.append(" and description '" + bean.getDescription() + "%'");
+				sql.append(" and description like '" + bean.getDescription() + "%'");
 				
 			}
 			
@@ -256,7 +256,7 @@ public class RoleModel {
 		
 		if(pageSize > 0) {
 			pageNo = (pageNo - 1) * pageSize;
-			sql.append(" limit" + pageNo + " ," + pageSize);
+			sql.append(" limit " + pageNo + ", " + pageSize);
 			
 		}
 		
@@ -284,7 +284,8 @@ public class RoleModel {
 			ps.close();
 			
 		}catch(Exception e) {
-			throw new ApplicationException("Exception : Exception search role");
+			e.printStackTrace();
+			throw new ApplicationException("Exception search role" + e.getMessage());
 			
 		}finally {
 			JdbcDataSource.closeConnection(conn);

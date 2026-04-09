@@ -27,4 +27,8 @@ public class RoleBean extends BaseBean{
 		this.description = description;
 	}
 
+	public String getValue() {
+		return name;
+	}
+
 }

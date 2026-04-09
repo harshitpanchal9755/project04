@@ -32,6 +32,12 @@ public interface ORSView { /// ors view is loosecoupling provide in class interf
 	public String ROLE_LIST_VIEW = PAGE_FOLDER + "/RoleListView.jsp";
 	public String ROLE_LIST_CTL = APP_CONTEXT + "/RoleListCtl";
 	
+	public String COLLEGE_VIEW = PAGE_FOLDER + "/CollegeView.jsp";
+	public String COLLEGE_CTL = APP_CONTEXT + "/CollegeCtl";
+
+	public String COLLEGE_LIST_VIEW = PAGE_FOLDER + "/CollegeListView.jsp";
+	public String COLLEGE_LIST_CTL = APP_CONTEXT + "/CollegeListCtl";
+	
 	public String STUDENT_VIEW = PAGE_FOLDER + "/StudentView.jsp";
 	public String STUDENT_CTL = APP_CONTEXT + "/StudentCtl";
 	

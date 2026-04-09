@@ -25,7 +25,7 @@ public class RoleListCtl extends BaseCtl {
 		RoleBean bean = new RoleBean();
 
 		bean.setName(DataUtility.getString(request.getParameter("name")));
-		bean.setId(DataUtility.getLong(request.getParameter("roleid")));
+		bean.setId(DataUtility.getLong(request.getParameter("roleId")));
 		return bean;
 
 	}
@@ -33,10 +33,12 @@ public class RoleListCtl extends BaseCtl {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
+		
 
-		RoleBean bean = new RoleBean();
+		RoleBean bean =  (RoleBean) populateBean(request);
 		RoleModel model = new RoleModel();
 
 		try {
@@ -53,8 +55,10 @@ public class RoleListCtl extends BaseCtl {
 			ServletUtility.setBean(bean, request);
 			request.setAttribute("nextListSize", next.size());
 
+			ServletUtility.forward(getView(), request, response);
 		} catch (ApplicationException e) {
 			e.printStackTrace();
+			return;
 		}
 
 	}
@@ -64,7 +68,7 @@ public class RoleListCtl extends BaseCtl {
 		List list = null;
 		List next = null;
 		
-		int pageNo = DataUtility.getInt(request.getParameter("pageNO"));
+		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 		
 		pageNo = (pageNo == 0) ? 1 : pageNo;
@@ -82,10 +86,10 @@ public class RoleListCtl extends BaseCtl {
 				if(OP_SEARCH.equalsIgnoreCase(op)) {
 					pageNo = 1;
 					
-				}else if("Next".equalsIgnoreCase(op)) {
+				}else if(OP_NEXT.equalsIgnoreCase(op)) {
 					pageNo++;
 					
-				}else if("Previous".equalsIgnoreCase(op) && pageNo > 1) {
+				}else if(OP_PREVIOUS.equalsIgnoreCase(op) && pageNo > 1) {
 					pageNo--;
 					
 				}
@@ -98,18 +102,18 @@ public class RoleListCtl extends BaseCtl {
 			}else if(OP_DELETE.equalsIgnoreCase(op)) {
 				pageNo = 1;
 				
-				if(ids != null && ids.length == 0) {
+				if(ids != null && ids.length > 0) {
 					RoleBean deletebean = new RoleBean();
 					
 				for(String id : ids) {
-					deletebean.setId(DataUtility.getInt("id"));
+					deletebean.setId(DataUtility.getInt(id));
 					model.delete(deletebean);
-					ServletUtility.setSuccessMessage("Data is delete is sucessfull", request);
+					ServletUtility.setSuccessMessage("Data is delete sucessfully", request);
 					
 				}
 			
 				}else {
-					ServletUtility.setErrorMessage("Select al least one record", request);
+					ServletUtility.setErrorMessage("Select at least one record", request);
 				}	
 			
 	}else if(OP_RESET.equalsIgnoreCase(op)) {
@@ -117,8 +121,8 @@ public class RoleListCtl extends BaseCtl {
 		return;
 	}
 			
-	list = model.search(bean, pageSize, pageNo)	;
-	next = model.search(bean, pageSize + 1, pageNo);
+	list = model.search(bean, pageNo, pageSize)	;
+	next = model.search(bean, pageNo + 1, pageSize);
 	
 	if(list == null || list.size() == 0) {
 		ServletUtility.setErrorMessage("No record is found", request);
@@ -136,14 +140,13 @@ public class RoleListCtl extends BaseCtl {
 			e.printStackTrace();
 			return;
 		} catch (DuplicateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return;
 		}
 	}
 
 	@Override
 	protected String getView() {
-		// TODO Auto-generated method stub
 		return ORSView.ROLE_LIST_VIEW;
 	}
 

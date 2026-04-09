@@ -94,9 +94,9 @@ public class LoginCtl extends BaseCtl {
 			try {
 				bean = model.authenticate(bean.getLogin(), bean.getPassword());
 
-				if (bean != null) {
+				if (bean != null) 	{
 					session.setAttribute("user", bean);
-					RoleBean rolebean = role.findBypk(bean.getRoleid());
+					RoleBean rolebean = role.findBypk(bean.getRoleId());
 
 					if (rolebean != null) {
 						session.setAttribute("role", rolebean.getName());

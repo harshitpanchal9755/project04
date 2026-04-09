@@ -84,14 +84,18 @@ public abstract class BaseCtl extends HttpServlet {
 	}
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	protected void service(HttpServletRequest request, HttpServletResponse response) // service method call hoti ha
 			throws ServletException, IOException {
 
 		System.out.println("in baseCtl service method");
 
+		preload(request);
+
 		String op = DataUtility.getString(request.getParameter("operation"));
 
-		if (DataValidator.isNotNull(op)) {
+		if (DataValidator.isNotNull(op) && !op.equalsIgnoreCase(OP_CANCEL) && !op.equalsIgnoreCase(OP_RESET)
+				&& !op.equalsIgnoreCase(OP_NEW) && !op.equalsIgnoreCase(OP_DELETE)) {
+			
 			if (validate(request) == false) {
 				ServletUtility.forward(getView(), request, response);
 				return;
@@ -102,5 +106,7 @@ public abstract class BaseCtl extends HttpServlet {
 	}
 
 	protected abstract String getView();
+
+
 
 }

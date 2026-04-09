@@ -30,4 +30,9 @@ public class CourseBean extends BaseBean {
 		this.description = description;
 	}
 
+	public String getValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

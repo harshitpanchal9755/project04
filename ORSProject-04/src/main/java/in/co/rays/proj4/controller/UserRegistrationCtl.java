@@ -16,6 +16,7 @@ import in.co.rays.proj4.exception.DuplicateException;
 import in.co.rays.proj4.model.UserModel;
 import in.co.rays.proj4.util.DataUtility;
 import in.co.rays.proj4.util.DataValidator;
+import in.co.rays.proj4.util.PropertyReader;
 import in.co.rays.proj4.util.ServletUtility;
 
 @WebServlet("/UserRegistrationCtl")
@@ -28,34 +29,34 @@ public class UserRegistrationCtl extends BaseCtl {
 		boolean pass = true;
 
 		if (DataValidator.isNull(request.getParameter("firstName"))) {
-			request.setAttribute("firstName", "firstName is required");
+			request.setAttribute("firstName", PropertyReader.getValue("error.require", "First Name"));
 			pass = false;
 
 		} else if (!DataValidator.isName(request.getParameter("firstName"))) {
-			request.setAttribute("firstName", "firstName is invalid");
+			request.setAttribute("firstName",  "Invalid First Name");
 			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("lastName"))) {
-			request.setAttribute("lastName", "lastname is required");
+			request.setAttribute("lastName", PropertyReader.getValue("error.require", "Last Name"));
 			pass = false;
 
 		} else if (!DataValidator.isName(request.getParameter("lastName"))) {
-			request.setAttribute("lastName", "lastname is invalid");
+			request.setAttribute("lastName",  "Invalid Last Name");
 			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("login"))) {
-			request.setAttribute("login", "login is required");
+			request.setAttribute("login",  PropertyReader.getValue("error.require", "Login Id"));
 			pass = false;
 
 		} else if (!DataValidator.isEmail(request.getParameter("login"))) {
-			request.setAttribute("login", "Login is invalid");
+			request.setAttribute("login",  "Invalid Login");
 			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("password"))) {
-			request.setAttribute("password", "password is required");
+			request.setAttribute("password",  PropertyReader.getValue("error.require",  "Password"));
 			pass = false;
 
 		} else if (!DataValidator.isPasswordLength(request.getParameter("password"))) {
@@ -70,22 +71,22 @@ public class UserRegistrationCtl extends BaseCtl {
 		}
 
 		if (DataValidator.isNull(request.getParameter("confirmPassword"))) {
-			request.setAttribute("confirmPassword", "confirmpassword is required");
+			request.setAttribute("confirmPassword",  PropertyReader.getValue("error.require",  "Confirm Password"));
 			pass = false;
 
 		}
 
 		if (DataValidator.isNull(request.getParameter("gender"))) {
-			request.setAttribute("gender", "gender is required");
+			request.setAttribute("gender", PropertyReader.getValue("error.require",  "Gender"));
 			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("dob"))) {
-			request.setAttribute("dob", "dob is required");
+			request.setAttribute("dob",  PropertyReader.getValue("error.require", "Date Of Birth"));
 			pass = false;
 
 		} else if (!DataValidator.isDate(request.getParameter("dob"))) {
-			request.setAttribute("dob", "invalide date of birth");
+			request.setAttribute("dob",  "Invalid Date Of Birth");
 			pass = false;
 		}
 
@@ -95,7 +96,7 @@ public class UserRegistrationCtl extends BaseCtl {
 		}
 
 		if (DataValidator.isNull(request.getParameter("mobileNo"))) {
-			request.setAttribute("mobileNo", "mobileNo is required");
+			request.setAttribute("mobileNo",  PropertyReader.getValue("error.require",  "Mobile No"));
 			pass = false;
 
 		} else if (!DataValidator.isPhoneLength(request.getParameter("mobileNo"))) {
@@ -103,7 +104,7 @@ public class UserRegistrationCtl extends BaseCtl {
 			pass = false;
 
 		} else if (!DataValidator.isPhoneNo(request.getParameter("mobileNo"))) {
-			request.setAttribute("mobileNo", "invalid is mobileNo");
+			request.setAttribute("mobileNo",  "Invalid Mobile No");
 			pass = false;
 		}
 
@@ -122,7 +123,7 @@ public class UserRegistrationCtl extends BaseCtl {
 		bean.setGender(DataUtility.getString(request.getParameter("gender")));
 		bean.setDob(DataUtility.getDate(request.getParameter("dob")));
 		bean.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
-		bean.setRoleid(RoleBean.STUDENT);
+		bean.setRoleId(RoleBean.STUDENT);
 
 		populateDTO(bean, request);
 
@@ -149,7 +150,7 @@ public class UserRegistrationCtl extends BaseCtl {
 			try {
 				long pk = model.add(bean);
 				ServletUtility.setBean(bean, req);
-				ServletUtility.setSuccessMessage("Registration successful!", req);
+				ServletUtility.setSuccessMessage("Registration successfull", req);
 			} catch (DuplicateException e) {
 				ServletUtility.setBean(bean, req);
 				ServletUtility.setErrorMessage("Login id already exists", req);

@@ -48,4 +48,9 @@ public class CollegeBean extends BaseBean {
 		this.phoneno = phoneno;
 	}
 
+	public String getValue() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+
 }

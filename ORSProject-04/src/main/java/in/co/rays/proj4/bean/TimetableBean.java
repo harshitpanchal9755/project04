@@ -77,4 +77,9 @@ public class TimetableBean extends BaseBean {
 		this.subjectname = subjectname;
 	}
 
+	public String getValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
