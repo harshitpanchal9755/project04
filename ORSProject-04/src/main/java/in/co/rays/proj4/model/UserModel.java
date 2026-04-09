@@ -4,12 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import in.co.rays.proj4.bean.UserBean;
 import in.co.rays.proj4.exception.ApplicationException;
 import in.co.rays.proj4.exception.DataBaseException;
 import in.co.rays.proj4.exception.DuplicateException;
+import in.co.rays.proj4.exception.RecordNotFoundException;
+import in.co.rays.proj4.util.EmailBuilder;
+import in.co.rays.proj4.util.EmailMessage;
+import in.co.rays.proj4.util.EmailUtility;
 import in.co.rays.proj4.util.JdbcDataSource;
 
 public class UserModel {
@@ -44,9 +49,9 @@ public class UserModel {
 
 		Connection conn = null;
 		int pk = 0;
-		
+
 		UserBean beanexist = findByLogin(bean.getLogin());
-		if(beanexist != null) {
+		if (beanexist != null) {
 			throw new DuplicateException("Login already exist");
 		}
 
@@ -72,7 +77,7 @@ public class UserModel {
 			conn.commit();
 			ps.close();
 		} catch (Exception e) {
-			
+
 			try {
 				conn.rollback();
 			} catch (Exception ex) {
@@ -130,7 +135,7 @@ public class UserModel {
 			JdbcDataSource.closeConnection(conn);
 		}
 	}
-	
+
 	public void delete(UserBean bean) throws ApplicationException {
 
 		Connection conn = null;
@@ -147,7 +152,7 @@ public class UserModel {
 			JdbcDataSource.closeConnection(conn);
 		}
 	}
-	
+
 	public UserBean findByPk(long pk) throws ApplicationException {
 
 		UserBean bean = null;
@@ -186,7 +191,7 @@ public class UserModel {
 		}
 		return bean;
 	}
-	
+
 	public UserBean findByLogin(String login) throws ApplicationException {
 
 		StringBuffer sql = new StringBuffer("select * from st_user where login = ?");
@@ -230,7 +235,6 @@ public class UserModel {
 
 		UserBean bean = null;
 		Connection conn = null;
-		
 
 		StringBuffer sql = new StringBuffer("select * from st_user where login = ? and password = ?");
 
@@ -265,10 +269,80 @@ public class UserModel {
 		}
 		return bean;
 	}
-	
+
+	public boolean changePassword(Long id, String oldPassword, String newPassword)
+			throws RecordNotFoundException, ApplicationException {
+
+		boolean flag = false;
+
+		UserBean beanExist = findByPk(id);
+
+		if (beanExist != null && beanExist.getPassword().equals(oldPassword)) {
+			beanExist.setPassword(newPassword);
+			try {
+				update(beanExist);
+				flag = true;
+			} catch (DuplicateException e) {
+				throw new ApplicationException("Login Id already exist");
+			}
+		} else {
+			throw new RecordNotFoundException("Old Password is Invalid");
+		}
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("login", beanExist.getLogin());
+		map.put("password", beanExist.getPassword());
+		map.put("firstName", beanExist.getFirstName());
+		map.put("lastName", beanExist.getLastName());
+
+		String message = EmailBuilder.getChangePasswordMessage(map);
+
+		EmailMessage msg = new EmailMessage();
+		msg.setTo(beanExist.getLogin());
+		msg.setSubject("ORSProject-04 Password has been changed Successfully.");
+		msg.setMessage(message);
+		msg.setMessageType(EmailMessage.HTML_MSG);
+
+		EmailUtility.sendMail(msg);
+
+		return flag;
+	}
+
+	public boolean forgetPassword(String login) throws RecordNotFoundException, ApplicationException {
+
+		UserBean userData = findByLogin(login);
+		boolean flag = false;
+
+		if (userData == null) {
+			throw new RecordNotFoundException("Email ID does not exists..!!");
+		}
+
+		try {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("login", userData.getLogin());
+			map.put("password", userData.getPassword());
+			map.put("firstName", userData.getFirstName());
+			map.put("lastName", userData.getLastName());
+
+			String message = EmailBuilder.getForgetPasswordMessage(map);
+
+			EmailMessage msg = new EmailMessage();
+			msg.setTo(login);
+			msg.setSubject("ORSProject-04 Password Reset");
+			msg.setMessage(message);
+			msg.setMessageType(EmailMessage.HTML_MSG);
+
+			EmailUtility.sendMail(msg);
+			flag = true;
+		} catch (Exception e) {
+			throw new ApplicationException("Please check your internet connection..!!");
+		}
+		return flag;
+	}
+
 	public List list() throws ApplicationException {
 		return search(null, 0, 0);
-		
+
 	}
 
 	public List<UserBean> search(UserBean bean, int pageNo, int pageSize) throws ApplicationException {
@@ -344,6 +418,26 @@ public class UserModel {
 		return list;
 	}
 
+	public long registerUser(UserBean bean) throws DuplicateException, ApplicationException {
+
+		long pk = add(bean);
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("login", bean.getLogin());
+		map.put("password", bean.getPassword());
+
+		String message = EmailBuilder.getUserRegistrationMessage(map);
+
+		EmailMessage msg = new EmailMessage();
+
+		msg.setTo(bean.getLogin());
+		msg.setSubject("Registration is successful for ORSProject-04");
+		msg.setMessage(message);
+		msg.setMessageType(EmailMessage.HTML_MSG);
+
+		EmailUtility.sendMail(msg);
+
+		return pk;
+
+	}
 }
-
-

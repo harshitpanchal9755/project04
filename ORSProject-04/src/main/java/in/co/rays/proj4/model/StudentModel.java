@@ -72,7 +72,7 @@ public class StudentModel {
 			pstmt.setTimestamp(12, bean.getCreatedDateTime());
 			pstmt.setTimestamp(13, bean.getModifiedDateTime());
 			pstmt.executeUpdate();
-			conn.commit(); // End transaction
+			conn.commit(); // End transaction compeleted
 			pstmt.close();
 		} catch (Exception e) {
 			try {
@@ -92,15 +92,16 @@ public class StudentModel {
 
 		Connection conn = null;
 
+		CollegeModel collegeModel = new CollegeModel();
+		CollegeBean collegeBean = collegeModel.findBypk(bean.getCollegeId());
+		bean.setCollegeName(collegeBean.getName());
+
 		StudentBean existBean = findByEmailId(bean.getEmail());
 
 		if (existBean != null && existBean.getId() != bean.getId()) {
 			throw new DuplicateException("Email Id is already exist");
 		}
 
-		CollegeModel collegeModel = new CollegeModel();
-		CollegeBean collegeBean = collegeModel.findByName(bean.getCollegeName());
-		bean.setCollegeName(collegeBean.getName());
 
 		try {
 			conn = JdbcDataSource.getConnection();

@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 
 import in.co.rays.proj4.bean.BaseBean;
@@ -62,9 +61,10 @@ public abstract class BaseCtl extends HttpServlet {
 		} else {
 			modifiedBy = userBean.getLogin();
 
-			if ("null".equalsIgnoreCase(createdBy) || DataValidator.isNull(createdBy))
-				;
-			createdBy = modifiedBy;
+			if ("null".equalsIgnoreCase(createdBy) || DataValidator.isNull(createdBy)) {
+
+				createdBy = modifiedBy;
+			}
 		}
 
 		dto.setCreatedBy(createdBy);
@@ -87,16 +87,16 @@ public abstract class BaseCtl extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) // service method call hoti ha
 			throws ServletException, IOException {
 
-		System.out.println("in baseCtl service method");
-
 		preload(request);
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 		if (DataValidator.isNotNull(op) && !op.equalsIgnoreCase(OP_CANCEL) && !op.equalsIgnoreCase(OP_RESET)
 				&& !op.equalsIgnoreCase(OP_NEW) && !op.equalsIgnoreCase(OP_DELETE)) {
-			
+
 			if (validate(request) == false) {
+				BaseBean bean = (BaseBean) populateBean(request);
+				ServletUtility.setBean(bean, request);
 				ServletUtility.forward(getView(), request, response);
 				return;
 			}
@@ -106,7 +106,5 @@ public abstract class BaseCtl extends HttpServlet {
 	}
 
 	protected abstract String getView();
-
-
 
 }

@@ -18,12 +18,12 @@ public class TestStudentModel {
 	public static void main(String[] args) throws Exception {
 		
 
-//		 testadd();
+		 testadd();
 //		 testupdate();
 //			testdelete();
 //			testfindBypk();
-			testEmail();
-			testsearch();
+//			testEmail();
+//			testsearch();
 
 	}
 	
@@ -140,11 +140,11 @@ public class TestStudentModel {
 			bean.setFirstName("harshit");
 			bean.setLastName("singh");
 			bean.setDob(new java.sql.Date(new Date().getTime()));
-			bean.setGender("bhopal");
+			bean.setGender("male");
 			bean.setMobileno("8098768766");
-			bean.setEmail("harshit@mail.com");
+			bean.setEmail("harshitsingh@mail.com");
 			bean.setCollegeId(2);
-			bean.setCollegeName("ips");
+			bean.setCollegeName("Ips University");
 			bean.setCreatedBy("root");
 			bean.setModifiedBy("root");
 			bean.setCreatedDateTime(new Timestamp(new Date().getTime()));

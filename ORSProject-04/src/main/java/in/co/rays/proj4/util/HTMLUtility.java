@@ -30,7 +30,6 @@ public class HTMLUtility {
 			}
 		}
 		sb.append("\n</select>");
-		System.out.println(sb.toString());
 		return sb.toString();
 	}
 
@@ -86,7 +85,6 @@ public class HTMLUtility {
 
 		String htmlSelectFromList = HTMLUtility.getList("role", selectedValue, list);
 
-		System.out.println(htmlSelectFromList);
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -95,7 +93,6 @@ public class HTMLUtility {
 		map.put("male", "male");
 		map.put("female", "female");
 
-		System.out.println(HTMLUtility.getList("gender", DataUtility.getStringData(null), map));
 
 	}
 }

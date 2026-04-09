@@ -42,21 +42,21 @@ public class StudentCtl extends BaseCtl {
 	protected boolean validate(HttpServletRequest request) {
 		boolean pass = true;
 
-		if (DataValidator.isNull(request.getParameter("firstName"))) {
-			request.setAttribute("firstName", PropertyReader.getValue("error.require", "First Name"));
+		if (DataValidator.isNull(request.getParameter("firstname"))) {
+			request.setAttribute("firstname", PropertyReader.getValue("error.require", "First Name"));
 			pass = false;
 
-		} else if (!DataValidator.isName(request.getParameter("firstName"))) {
-			request.setAttribute("firstName", "Invalid First Name");
+		} else if (!DataValidator.isName(request.getParameter("firstname"))) {
+			request.setAttribute("firstname", "Invalid First Name");
 			pass = false;
 		}
 
-		if (DataValidator.isNull(request.getParameter("lastName"))) {
-			request.setAttribute("lastName", PropertyReader.getValue("error.require", "Last Name"));
+		if (DataValidator.isNull(request.getParameter("lastname"))) {
+			request.setAttribute("lastname", PropertyReader.getValue("error.require", "Last Name"));
 			pass = false;
 
-		} else if (!DataValidator.isName(request.getParameter("lastName"))) {
-			request.setAttribute("lastName", "Invalid Last Name");
+		} else if (!DataValidator.isName(request.getParameter("lastname"))) {
+			request.setAttribute("lastname", "Invalid Last Name");
 			pass = false;
 
 		}
@@ -107,16 +107,16 @@ public class StudentCtl extends BaseCtl {
 
 		StudentBean bean = new StudentBean();
 
-		bean.setId(DataUtility.getLong("id"));
-		bean.setFirstName(DataUtility.getString("firstName"));
-		bean.setLastName(DataUtility.getString("lastName"));
+		bean.setId(DataUtility.getLong(request.getParameter("id")));
+		bean.setFirstName(DataUtility.getString(request.getParameter("firstname")));
+		bean.setLastName(DataUtility.getString(request.getParameter("lastname")));
 		bean.setDob(DataUtility.getDate(request.getParameter("dob")));
 		bean.setGender(DataUtility.getString(request.getParameter("gender")));
 		bean.setMobileno(DataUtility.getString(request.getParameter("mobileno")));
 		bean.setEmail(DataUtility.getString(request.getParameter("email")));
 		bean.setCollegeId(DataUtility.getLong(request.getParameter("collegeId")));
 		
-		populateDTO(bean, request);
+//		populateDTO(bean, request);
 
 		return bean;
 	}
@@ -168,12 +168,12 @@ public class StudentCtl extends BaseCtl {
 				return;
 			}
 		} else if (OP_UPDATE.equalsIgnoreCase(op)) {
+			
 			StudentBean bean = (StudentBean) populateBean(request);
 
 			try {
 				if (id > 0) {
 					model.update(bean);
-
 				}
 
 				ServletUtility.setBean(bean, request);

@@ -22,7 +22,6 @@
 			scope="request"></jsp:useBean>
 
 		<%
-		@SuppressWarnings("unchecked")
 		List<CollegeBean> collegeList = (List<CollegeBean>) request.getAttribute("collegeList");
 		%>
 
@@ -60,17 +59,17 @@
 			<table>
 				<tr>
 					<th align="left">First Name<span style="color: red">*</span></th>
-					<td><input type="text" name="firstName"
+					<td><input type="text" name="firstname"
 						placeholder="Enter First Name"
 						value="<%=DataUtility.getStringData(bean.getFirstName())%>"></td>
-					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("firstName", request)%></font></td>
+					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("firstname", request)%></font></td>
 				</tr>
 				<tr>
 					<th align="left">Last Name<span style="color: red">*</span></th>
-					<td><input type="text" name="lastName"
+					<td><input type="text" name="lastname"
 						placeholder="Enter Last Name"
 						value="<%=DataUtility.getStringData(bean.getLastName())%>"></td>
-					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("lastName", request)%></font></td>
+					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("lastname", request)%></font></td>
 				</tr>
 				<tr>
 					<th align="left">Email Id<span style="color: red">*</span></th>
