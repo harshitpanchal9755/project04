@@ -20,7 +20,7 @@ public class EmailBuilder {
 	public static String getForgetPasswordMessage(HashMap<String, String> map) {
 		StringBuilder msg = new StringBuilder();
 		msg.append("<HTML><BODY>");
-		msg.append("<H1>Password Recovery</H1>");
+		msg.append("<H1>Password Has Been Recoverd</H1>");
 		msg.append("<P>Hello, ").append(map.get("firstName")).append(" ").append(map.get("lastName")).append(".</P>");
 		msg.append("<P>Your login details are:</P>");
 		msg.append("<P><B>Login Id: ").append(map.get("login")).append("<BR>Password: ").append(map.get("password"))

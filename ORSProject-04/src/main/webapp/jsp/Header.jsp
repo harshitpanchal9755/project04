@@ -9,11 +9,9 @@
 <title>header page</title>
 </head>
 <body>
-<%
-
-
+	<%
 	UserBean user = (UserBean) session.getAttribute("user");
-%>
+	%>
 	<%
 	if (user != null) {
 	%>
@@ -22,7 +20,7 @@
 		<%=user.getFirstName()%>
 		(<%=session.getAttribute("role")%>)
 	</h3>
-	<a href="MyProfileCtl"><b>My Profile</b></a>
+	<a href="<%=ORSView.MY_PROFILE_CTL%>"><b>My Profile</b></a>
 	<b>|</b>
 	<a href="ChangePasswordCtl"><b>Change Password</b></a>
 	<b>|</b>
@@ -30,13 +28,13 @@
 	<b>|</b>
 	<a href="MarksheetMeritListCtl"><b>Marksheet Merit List</b></a>
 	<b>|</b>
-	<a href="<%= ORSView.USER_CTL%>"><b>Add User</b></a>
+	<a href="<%=ORSView.USER_CTL%>"><b>Add User</b></a>
 	<b>|</b>
-	<a href="<%= ORSView.USER_LIST_CTL%>"><b>User List</b></a>
+	<a href="<%=ORSView.USER_LIST_CTL%>"><b>User List</b></a>
 	<b>|</b>
 	<a href="<%=ORSView.ROLE_CTL%>"><b>Add Role</b></a>
 	<b>|</b>
-	<a href="<%= ORSView.ROLE_LIST_CTL%>"><b>Role List</b></a>
+	<a href="<%=ORSView.ROLE_LIST_CTL%>"><b>Role List</b></a>
 	<b>|</b>
 	<a href="CollegeCtl"><b>Add College</b></a>
 	<b>|</b>
@@ -75,9 +73,9 @@
 	<h3>Hi, Guest</h3>
 	<a href="<%=ORSView.WELCOME_CTL%>"><b>Welcome</b></a> |
 	<a href="<%=ORSView.LOGIN_CTL%>"><b>Login</b></a>
-		<%
+	<%
 	}
 	%>
-<hr>	
+	<hr>
 </body>
 </html>

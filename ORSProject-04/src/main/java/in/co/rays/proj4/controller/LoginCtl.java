@@ -65,7 +65,6 @@ public class LoginCtl extends BaseCtl {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		System.out.println("hello");
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 		if (OP_LOG_OUT.equalsIgnoreCase(op)) {
