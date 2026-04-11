@@ -15,7 +15,7 @@ public interface ORSView { /// ors view is loosecoupling provide in class interf
 	public String GET_MARKSHEET_CTL = APP_CONTEXT + "/GetMarksheetCtl";
 	
 	public String MARKSHEET_MERIT_LIST_VIEW = PAGE_FOLDER + "/MarksheetMeritListView.jsp";
-	public String MARKSHEET_MERIT_LIST_CTL = APP_CONTEXT + "/MarsheetMeritListCtl";
+	public String MARKSHEET_MERIT_LIST_CTL = APP_CONTEXT + "/MarksheetMeritListCtl";
 	
 	public String USER_REGISTRATION_VIEW = PAGE_FOLDER + "/UserRegistrationView.jsp";
 	public String USER_REGISTRATION_CTL = APP_CONTEXT + "/UserRegistrationCtl";

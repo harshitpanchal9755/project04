@@ -98,7 +98,7 @@ public class UserModel {
 
 		UserBean beanExist = findByLogin(bean.getLogin());
 
-		if (beanExist != null) {
+		if (beanExist != null && beanExist.getId() != bean.getId()) {
 			throw new DuplicateException("Login already exist");
 		}
 
@@ -134,7 +134,7 @@ public class UserModel {
 		} finally {
 			JdbcDataSource.closeConnection(conn);
 		}
-	}
+		}
 
 	public void delete(UserBean bean) throws ApplicationException {
 

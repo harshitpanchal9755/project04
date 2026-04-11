@@ -1,7 +1,6 @@
 package in.co.rays.proj4.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,73 +9,55 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import in.co.rays.proj4.bean.BaseBean;
-import in.co.rays.proj4.bean.CollegeBean;
-import in.co.rays.proj4.bean.UserBean;
+import in.co.rays.proj4.bean.MarksheetBean;
 import in.co.rays.proj4.exception.ApplicationException;
-import in.co.rays.proj4.exception.DuplicateException;
-import in.co.rays.proj4.model.CollegeModel;
-import in.co.rays.proj4.model.UserModel;
+import in.co.rays.proj4.model.MarksheetModel;
 import in.co.rays.proj4.util.DataUtility;
 import in.co.rays.proj4.util.PropertyReader;
 import in.co.rays.proj4.util.ServletUtility;
 
-@WebServlet(name = "CollegeListCtl", urlPatterns = {"/CollegeListCtl"})
-public class CollegeListCtl extends BaseCtl {
-	
-	@Override
-	protected void preload(HttpServletRequest request) {
-		CollegeModel model = new CollegeModel();
-		
-			try {
-				List collegeList = model.list();
-				request.setAttribute("collegeList", collegeList);
-				
-			}catch(ApplicationException e) {
-				e.printStackTrace();
-			}
-			
-	}
-	
+@WebServlet(name = "MarksheetListCtl", urlPatterns = {"/MarksheetListCtl"})
+public class MarksheetListCtl extends BaseCtl{
+
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
-		
-		CollegeBean bean = new CollegeBean();
-		
+		MarksheetBean bean = new MarksheetBean();
+
+		bean.setRollno(DataUtility.getString(request.getParameter("rollNo")));
 		bean.setName(DataUtility.getString(request.getParameter("name")));
-		bean.setCity(request.getParameter("city"));
-		bean.setId(DataUtility.getLong(request.getParameter("collegeId")));
+
 		return bean;
-		
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
-		
-		CollegeBean bean = (CollegeBean) populateBean(request);
-		CollegeModel model = new CollegeModel();
-		
+
+		MarksheetBean bean = (MarksheetBean) populateBean(request);
+		MarksheetModel model = new MarksheetModel();
+
 		try {
-			List<CollegeBean> list = model.search(bean, pageNo, pageSize);
-			List<CollegeBean> next = model.search(bean, pageNo + 1, pageSize);
-			if(list == null || list.isEmpty()) {
+			List<MarksheetBean> list = model.search(bean, pageNo, pageSize);
+			List<MarksheetBean> next = model.search(bean, pageNo + 1, pageSize);
+
+			if (list == null || list.isEmpty()) {
 				ServletUtility.setErrorMessage("No record found", request);
-				
 			}
-			
+
 			ServletUtility.setList(list, request);
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
 			ServletUtility.setBean(bean, request);
 			request.setAttribute("nextListSize", next.size());
-			
+
 			ServletUtility.forward(getView(), request, response);
-			
-		}catch(ApplicationException e) {
+
+		} catch (ApplicationException e) {
 			e.printStackTrace();
+			ServletUtility.handleException(e, request, response);
+			return;
 		}
-		
 	}
 	
 	@Override
@@ -90,8 +71,8 @@ public class CollegeListCtl extends BaseCtl {
 		pageNo = (pageNo == 0) ? 1 : pageNo;
 		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
 
-		CollegeBean bean = (CollegeBean) populateBean(request);
-		CollegeModel model = new CollegeModel();
+		MarksheetBean bean = (MarksheetBean) populateBean(request);
+		MarksheetModel model = new MarksheetModel();
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 		String[] ids = request.getParameterValues("ids");
@@ -109,33 +90,28 @@ public class CollegeListCtl extends BaseCtl {
 				}
 
 			} else if (OP_NEW.equalsIgnoreCase(op)) {
-				ServletUtility.redirect(ORSView.COLLEGE_CTL, request, response);
+				ServletUtility.redirect(ORSView.MARKSHEET_CTL, request, response);
 				return;
 
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {
 				pageNo = 1;
 				if (ids != null && ids.length > 0) {
-					CollegeBean deletebean = new CollegeBean();
+					MarksheetBean deletebean = new MarksheetBean();
 					for (String id : ids) {
 						deletebean.setId(DataUtility.getInt(id));
-						try {
-							model.delete(deletebean);
-						} catch (Exception e) {
-					
-							e.printStackTrace();
-						}
-						ServletUtility.setSuccessMessage("Data is deleted successfully", request);
+						model.delete(deletebean);
+						ServletUtility.setSuccessMessage("Marksheet is deleted successfully", request);
 					}
 				} else {
 					ServletUtility.setErrorMessage("Select at least one record", request);
 				}
 
 			} else if (OP_RESET.equalsIgnoreCase(op)) {
-				ServletUtility.redirect(ORSView.COLLEGE_LIST_CTL, request, response);
+				ServletUtility.redirect(ORSView.MARKSHEET_LIST_CTL, request, response);
 				return;
 
 			} else if (OP_BACK.equalsIgnoreCase(op)) {
-				ServletUtility.redirect(ORSView.COLLEGE_LIST_CTL, request, response);
+				ServletUtility.redirect(ORSView.MARKSHEET_LIST_CTL, request, response);
 				return;
 			}
 
@@ -159,12 +135,10 @@ public class CollegeListCtl extends BaseCtl {
 			return;
 		}
 	}
-
-	
-
 	@Override
 	protected String getView() {
-		return ORSView.COLLEGE_LIST_VIEW;
+		// TODO Auto-generated method stub
+		return ORSView.MARKSHEET_LIST_VIEW;
 	}
 
 }
