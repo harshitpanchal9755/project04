@@ -96,7 +96,7 @@
 				<tr>
 					<th align="left">Phoneno<span style="color: red">*</span></th>
 					<td><input type="text" name="phoneno"
-						placeholder="Enter Phone No"
+						placeholder="Enter Phone No" maxlength="10"
 						value="<%=DataUtility.getStringData(bean.getPhoneno())%>"></td>
 					<td style="position: fixed"><font color="red"><%=ServletUtility.getErrorMessage("phoneno", request)%></font></td>
 

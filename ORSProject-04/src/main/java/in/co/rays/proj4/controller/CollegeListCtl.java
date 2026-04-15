@@ -1,6 +1,7 @@
 package in.co.rays.proj4.controller;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
 
 import in.co.rays.proj4.bean.BaseBean;
 import in.co.rays.proj4.bean.CollegeBean;
@@ -20,8 +23,25 @@ import in.co.rays.proj4.util.DataUtility;
 import in.co.rays.proj4.util.PropertyReader;
 import in.co.rays.proj4.util.ServletUtility;
 
-@WebServlet(name = "CollegeListCtl", urlPatterns = {"/CollegeListCtl"})
+/**
+ * CollegeListCtl Servlet handles the operations of displaying, searching,
+ * paginating and deleting College records. It works as the Controller in MVC
+ * architecture for the College List View.
+ * 
+ * @author Harshit Panchal
+ * @version 1.0
+ */
+
+@WebServlet(name = "CollegeListCtl", urlPatterns = {"/ctl/CollegeListCtl"})
 public class CollegeListCtl extends BaseCtl {
+	
+	private static Logger log = Logger.getLogger(CollegeListCtl.class);
+	
+	/**
+	 * Preloads the list of Colleges to populate dropdowns on the JSP page.
+	 *
+	 * @param request HttpServletRequest object
+	 */
 	
 	@Override
 	protected void preload(HttpServletRequest request) {
@@ -37,6 +57,13 @@ public class CollegeListCtl extends BaseCtl {
 			
 	}
 	
+	
+	/**
+	 * Populates the CollegeBean object from request parameters.
+	 *
+	 * @param request HttpServletRequest object
+	 * @return populated CollegeBean
+	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
 		
@@ -49,8 +76,16 @@ public class CollegeListCtl extends BaseCtl {
 		
 	}
 	
+	/**
+	 * Handles HTTP GET requests. Displays the first page of college records.
+	 *
+	 * @param request HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		log.debug("CollegeListCtl doGet Start");
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 		
@@ -76,11 +111,21 @@ public class CollegeListCtl extends BaseCtl {
 		}catch(ApplicationException e) {
 			e.printStackTrace();
 		}
-		
+		log.debug("CollegeListCtl doGet ended");
 	}
 	
+	
+	/**
+	 * Handles HTTP POST requests for operations such as Search, Next, Previous,
+	 * New, Delete, Reset and Back.
+	 *
+	 * @param request HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		log.debug("CollegeListCtl doPost Start");
 		List list = null;
 		List next = null;
 
@@ -158,9 +203,14 @@ public class CollegeListCtl extends BaseCtl {
 			ServletUtility.handleException(e, request, response);
 			return;
 		}
+		log.debug("CollegeListCtl doPost ended");
 	}
 
-	
+	/**
+	 * Returns the view for College List.
+	 *
+	 * @return College List JSP page
+	 */
 
 	@Override
 	protected String getView() {

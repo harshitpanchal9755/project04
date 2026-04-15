@@ -7,6 +7,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>header page</title>
+
+<script src="/ORS_Project4/js/checkbox.js"></script>
+<script src="/ORS_Project4/js/datepicker.js"></script>
+
 </head>
 <body>
 	<%
@@ -63,6 +67,8 @@
 	<a href="FacultyCtl"><b>Add Faculty</b></a>
 	<b>|</b>
 	<a href="FacultyListCtl"><b>Faculty List</b></a>
+	<b>|</b>
+	<a target="blank" href="<%=ORSView.JAVA_DOC%>"><b>Java Doc</b></a>
 	<b>|</b>
 	<a href="<%=ORSView.LOGIN_CTL + "?operation=Logout"%>"><b>Logout</b></a>
 	<%

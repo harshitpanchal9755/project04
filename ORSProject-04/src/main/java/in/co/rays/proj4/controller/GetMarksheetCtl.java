@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.proj4.bean.BaseBean;
 import in.co.rays.proj4.bean.MarksheetBean;
 import in.co.rays.proj4.exception.ApplicationException;
@@ -16,11 +18,30 @@ import in.co.rays.proj4.util.DataValidator;
 import in.co.rays.proj4.util.PropertyReader;
 import in.co.rays.proj4.util.ServletUtility;
 
-@WebServlet(name = "GetMarksheetCtl", urlPatterns = {"/GetMarksheetCtl"})
+/**
+ * Controller to fetch a Marksheet using Roll Number.
+ * <p>
+ * This controller validates roll number input, populates the MarksheetBean,
+ * retrieves the corresponding marksheet from the database, and forwards the
+ * result to the appropriate view.
+ * </p>
+ *
+ * @author Harshit Panchal
+ */
+@WebServlet(name = "GetMarksheetCtl", urlPatterns = {"/ctl/GetMarksheetCtl"})
 public class GetMarksheetCtl extends BaseCtl{
+	
+	private static Logger log = Logger.getLogger("/MarksheetCtl");
 
+	 /**
+     * Validates user input for roll number.
+     *
+     * @param request HttpServletRequest
+     * @return true if valid, false otherwise
+     */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
+		log.debug("GetMarksheetCTL Method validate Started");
 		boolean pass = true;
 
 		if (DataValidator.isNull(request.getParameter("rollNo"))) {
@@ -68,9 +89,14 @@ public class GetMarksheetCtl extends BaseCtl{
 			}
 		}
 		ServletUtility.forward(getView(), request, response);
+		log.debug("GetMarksheetList dopost start method()");
 	}
 	
-	
+	 /**
+     * Returns the view constant for marksheet display.
+     *
+     * @return GET_MARKSHEET_VIEW
+     */
 	@Override
 	protected String getView() {
 		return ORSView.GET_MARKSHEET_VIEW;

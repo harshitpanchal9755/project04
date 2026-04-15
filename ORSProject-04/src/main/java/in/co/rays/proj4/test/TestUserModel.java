@@ -11,6 +11,7 @@ import javax.management.modelmbean.ModelMBean;
 import in.co.rays.proj4.bean.RoleBean;
 import in.co.rays.proj4.bean.UserBean;
 import in.co.rays.proj4.exception.ApplicationException;
+import in.co.rays.proj4.exception.DataBaseException;
 import in.co.rays.proj4.exception.DuplicateException;
 import in.co.rays.proj4.model.UserModel;
 
@@ -25,7 +26,14 @@ public class TestUserModel {
 //		testfindBypk();
 //		testlogin();
 //		testauthenticate();
-		testsearch();
+//		testsearch();
+		testnextpk();
+
+	}
+
+	private static void testnextpk() throws DataBaseException {
+		int i = model.nextpk();
+		System.out.println(i + "nextpk");
 
 	}
 
@@ -121,11 +129,11 @@ public class TestUserModel {
 		UserBean bean = new UserBean();
 		long pk = 1L;
 		bean.setId(pk);
-		
+
 		model.delete(bean);
 		UserBean deletebean = model.findByPk(pk);
-		
-		if(deletebean != null) {
+
+		if (deletebean != null) {
 			System.out.println("id is not delete");
 		}
 	}

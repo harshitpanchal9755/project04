@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.proj4.bean.BaseBean;
 import in.co.rays.proj4.bean.MarksheetBean;
 import in.co.rays.proj4.exception.ApplicationException;
@@ -16,21 +18,44 @@ import in.co.rays.proj4.util.DataUtility;
 import in.co.rays.proj4.util.PropertyReader;
 import in.co.rays.proj4.util.ServletUtility;
 
-@WebServlet(name = "MarksheetListCtl", urlPatterns = {"/MarksheetListCtl"})
+/**
+ * Controller to handle Marksheet List operations like search, delete, pagination.
+ * <p>
+ * It handles displaying paginated marksheet list, searching by Roll No or Name,
+ * and deleting selected records.
+ * </p>
+ * 
+ * @author Harshit Panchal
+ */
+@WebServlet(name = "MarksheetListCtl", urlPatterns = {"/ctl/MarksheetListCtl"})
 public class MarksheetListCtl extends BaseCtl{
+	
+	private static Logger log = Logger.getLogger("/MarksheetListCtl");
+	
+	/**
+     * Populates MarksheetBean from request parameters for search/filter.
+     */
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
+		log.debug("MarksheetListCtl Method populate Started");
+    	
 		MarksheetBean bean = new MarksheetBean();
 
 		bean.setRollno(DataUtility.getString(request.getParameter("rollNo")));
 		bean.setName(DataUtility.getString(request.getParameter("name")));
+		  log.debug("MarksheetListCtl Method populate ended");
 
 		return bean;
 	}
 	
+	 /**
+     * Handles GET request to display marksheet list.
+     */
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		log.debug("MarksheetListCtl Method doGet Started");
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 

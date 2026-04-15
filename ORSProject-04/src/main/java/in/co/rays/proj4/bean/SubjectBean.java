@@ -1,46 +1,110 @@
 package in.co.rays.proj4.bean;
 
+/**
+ * SubjectBean is a JavaBean class that represents a Subject entity. It is used
+ * to handle records of the ST_SUBJECT table.
+ *
+ * This class contains subject-related attributes such as name, description,
+ * and associated course information.
+ *
+ * It extends BaseBean to inherit common properties like id, createdBy, etc.
+ *
+ * @author Harshit Panchal
+ */
 public class SubjectBean extends BaseBean {
-	private String name;
-	private long courseid;
-	private String coursename;
-	private String description;
 
-	public String getName() {
-		return name;
-	}
+    /** Name of the subject */
+    private String name;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    /** Course ID associated with the subject */
+    private long courseid;
 
-	public long getCourseId() {
-		return courseid;
-	}
+    /** Course name associated with the subject */
+    private String coursename;
 
-	public void setCoursId(long courseid) {
-		this.courseid = courseid;
-	}
+    /** Description of the subject */
+    private String description;
 
-	public String getCourseName() {
-		return coursename;
-	}
+    /**
+     * Returns the name of the subject.
+     *
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
 
-	public void setCourseName(String coursename) {
-		this.coursename = coursename;
-	}
+    /**
+     * Sets the name of the subject.
+     *
+     * @param name the subject name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    /**
+     * Returns the course ID associated with the subject.
+     *
+     * @return courseid
+     */
+    public long getCourseId() {
+        return courseid;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    /**
+     * Sets the course ID associated with the subject.
+     *
+     * @param courseid the course ID to set
+     */
+    public void setCoursId(long courseid) {
+        this.courseid = courseid;
+    }
 
-	public String getValue() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /**
+     * Returns the course name associated with the subject.
+     *
+     * @return coursename
+     */
+    public String getCourseName() {
+        return coursename;
+    }
 
+    /**
+     * Sets the course name associated with the subject.
+     *
+     * @param coursename the course name to set
+     */
+    public void setCourseName(String coursename) {
+        this.coursename = coursename;
+    }
+
+    /**
+     * Returns the description of the subject.
+     *
+     * @return description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Sets the description of the subject.
+     *
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * Returns the display value of the bean. Usually used in dropdowns or UI
+     * components.
+     *
+     * @return name as display value
+     */
+    
+    public String getValue() {
+        return name;
+    }
 }

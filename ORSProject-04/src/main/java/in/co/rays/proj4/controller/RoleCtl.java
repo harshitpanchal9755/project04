@@ -16,7 +16,7 @@ import in.co.rays.proj4.util.DataUtility;
 import in.co.rays.proj4.util.DataValidator;
 import in.co.rays.proj4.util.ServletUtility;
 
-@WebServlet("/RoleCtl")
+@WebServlet(name = "RoleCtl", urlPatterns = {"/ctl/RoleCtl"})
 public class RoleCtl extends BaseCtl {
 
 	@Override

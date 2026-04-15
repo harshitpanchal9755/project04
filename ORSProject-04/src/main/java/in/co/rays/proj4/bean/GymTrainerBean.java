@@ -1,5 +1,10 @@
 package in.co.rays.proj4.bean;
 
+
+/**
+ * @author HP
+ *
+ */
 public class GymTrainerBean {
 
 	private Long id;
@@ -34,6 +39,7 @@ public class GymTrainerBean {
 	public Double getSalary() {
 		return salary;
 	}
+	
 
 	public void setSalary(Double salary) {
 		this.salary = salary;

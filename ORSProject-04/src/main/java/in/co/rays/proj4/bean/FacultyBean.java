@@ -2,120 +2,279 @@ package in.co.rays.proj4.bean;
 
 import java.util.Date;
 
+/**
+ * FacultyBean is a JavaBean class that represents a Faculty entity. It is used
+ * to handle records of the ST_FACULTY table.
+ *
+ * This class contains faculty-related attributes such as personal details,
+ * contact information, and associated college, course, and subject information.
+ *
+ * It extends BaseBean to inherit common properties like id, createdBy, etc.
+ *
+ * @author Harshit Panchal
+ */
 public class FacultyBean extends BaseBean {
 
-	private String firstname;
-	private String lastname;
-	private Date dob;
-	private String gender;
-	private String mobileno;
-	private String email;
-	private long collegeid;
-	private String collegename;
-	private long courseid;
-	private String coursename;
-	private long subjectid;
-	private String subjectname;
+    /** First name of the faculty */
+    private String firstname;
 
-	public String getFirstname() {
-		return firstname;
-	}
+    /** Last name of the faculty */
+    private String lastname;
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
+    /** Date of birth of the faculty */
+    private Date dob;
 
-	public String getLastname() {
-		return lastname;
-	}
+    /** Gender of the faculty */
+    private String gender;
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
+    /** Mobile number of the faculty */
+    private String mobileno;
 
-	public Date getDob() {
-		return dob;
-	}
+    /** Email address of the faculty */
+    private String email;
 
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
+    /** College ID associated with the faculty */
+    private long collegeid;
 
-	public String getGender() {
-		return gender;
-	}
+    /** College name associated with the faculty */
+    private String collegename;
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+    /** Course ID associated with the faculty */
+    private long courseid;
 
-	public String getMobileno() {
-		return mobileno;
-	}
+    /** Course name associated with the faculty */
+    private String coursename;
 
-	public void setMobileno(String mobileno) {
-		this.mobileno = mobileno;
-	}
+    /** Subject ID associated with the faculty */
+    private long subjectid;
 
-	public String getEmail() {
-		return email;
-	}
+    /** Subject name associated with the faculty */
+    private String subjectname;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    /**
+     * Returns the first name of the faculty.
+     *
+     * @return firstname
+     */
+    public String getFirstname() {
+        return firstname;
+    }
 
-	public long getCollegeid() {
-		return collegeid;
-	}
+    /**
+     * Sets the first name of the faculty.
+     *
+     * @param firstname the first name to set
+     */
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-	public void setCollegeid(long collegeid) {
-		this.collegeid = collegeid;
-	}
+    /**
+     * Returns the last name of the faculty.
+     *
+     * @return lastname
+     */
+    public String getLastname() {
+        return lastname;
+    }
 
-	public String getCollegename() {
-		return collegename;
-	}
+    /**
+     * Sets the last name of the faculty.
+     *
+     * @param lastname the last name to set
+     */
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
-	public void setCollegename(String collegename) {
-		this.collegename = collegename;
-	}
+    /**
+     * Returns the date of birth of the faculty.
+     *
+     * @return dob
+     */
+    public Date getDob() {
+        return dob;
+    }
 
-	public long getCourseid() {
-		return courseid;
-	}
+    /**
+     * Sets the date of birth of the faculty.
+     *
+     * @param dob the date of birth to set
+     */
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
 
-	public void setCourseid(long courseid) {
-		this.courseid = courseid;
-	}
+    /**
+     * Returns the gender of the faculty.
+     *
+     * @return gender
+     */
+    public String getGender() {
+        return gender;
+    }
 
-	public String getCoursename() {
-		return coursename;
-	}
+    /**
+     * Sets the gender of the faculty.
+     *
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-	public void setCoursename(String coursename) {
-		this.coursename = coursename;
-	}
+    /**
+     * Returns the mobile number of the faculty.
+     *
+     * @return mobileno
+     */
+    public String getMobileno() {
+        return mobileno;
+    }
 
-	public long getSubjectid() {
-		return subjectid;
-	}
+    /**
+     * Sets the mobile number of the faculty.
+     *
+     * @param mobileno the mobile number to set
+     */
+    public void setMobileno(String mobileno) {
+        this.mobileno = mobileno;
+    }
 
-	public void setSubjectid(long subjectid) {
-		this.subjectid = subjectid;
-	}
+    /**
+     * Returns the email address of the faculty.
+     *
+     * @return email
+     */
+    public String getEmail() {
+        return email;
+    }
 
-	public String getSubjectname() {
-		return subjectname;
-	}
+    /**
+     * Sets the email address of the faculty.
+     *
+     * @param email the email address to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setSubjectname(String subjectname) {
-		this.subjectname = subjectname;
-	}
+    /**
+     * Returns the college ID associated with the faculty.
+     *
+     * @return collegeid
+     */
+    public long getCollegeid() {
+        return collegeid;
+    }
 
-	public String getValue() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /**
+     * Sets the college ID associated with the faculty.
+     *
+     * @param collegeid the college ID to set
+     */
+    public void setCollegeid(long collegeid) {
+        this.collegeid = collegeid;
+    }
 
+    /**
+     * Returns the college name associated with the faculty.
+     *
+     * @return collegename
+     */
+    public String getCollegename() {
+        return collegename;
+    }
+
+    /**
+     * Sets the college name associated with the faculty.
+     *
+     * @param collegename the college name to set
+     */
+    public void setCollegename(String collegename) {
+        this.collegename = collegename;
+    }
+
+    /**
+     * Returns the course ID associated with the faculty.
+     *
+     * @return courseid
+     */
+    public long getCourseid() {
+        return courseid;
+    }
+
+    /**
+     * Sets the course ID associated with the faculty.
+     *
+     * @param courseid the course ID to set
+     */
+    public void setCourseid(long courseid) {
+        this.courseid = courseid;
+    }
+
+    /**
+     * Returns the course name associated with the faculty.
+     *
+     * @return coursename
+     */
+    public String getCoursename() {
+        return coursename;
+    }
+
+    /**
+     * Sets the course name associated with the faculty.
+     *
+     * @param coursename the course name to set
+     */
+    public void setCoursename(String coursename) {
+        this.coursename = coursename;
+    }
+
+    /**
+     * Returns the subject ID associated with the faculty.
+     *
+     * @return subjectid
+     */
+    public long getSubjectid() {
+        return subjectid;
+    }
+
+    /**
+     * Sets the subject ID associated with the faculty.
+     *
+     * @param subjectid the subject ID to set
+     */
+    public void setSubjectid(long subjectid) {
+        this.subjectid = subjectid;
+    }
+
+    /**
+     * Returns the subject name associated with the faculty.
+     *
+     * @return subjectname
+     */
+    public String getSubjectname() {
+        return subjectname;
+    }
+
+    /**
+     * Sets the subject name associated with the faculty.
+     *
+     * @param subjectname the subject name to set
+     */
+    public void setSubjectname(String subjectname) {
+        this.subjectname = subjectname;
+    }
+
+    /**
+     * Returns the display value of the bean. Usually used in dropdowns or UI
+     * components.
+     *
+     * @return null as no specific display value is defined for faculty
+     */
+    
+    public String getValue() {
+        return null;
+    }
 }
