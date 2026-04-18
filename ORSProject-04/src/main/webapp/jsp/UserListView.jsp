@@ -1,24 +1,25 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="in.co.rays.proj4.model.RoleModel"%>
-<%@page import="in.co.rays.proj4.controller.UserListCtl"%>
-<%@page import="java.util.Iterator"%>
+<%@page import="in.co.rays.proj4.bean.UserBean"%>
 <%@page import="in.co.rays.proj4.bean.RoleBean"%>
-<%@page import="java.util.List"%>
-<%@page import="in.co.rays.proj4.controller.UserRegistrationCtl"%>
+<%@page import="in.co.rays.proj4.controller.ORSView"%>
 <%@page import="in.co.rays.proj4.util.HTMLUtility"%>
-<%@page import="java.util.HashMap"%>
+<%@page import="in.co.rays.proj4.model.RoleModel"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="in.co.rays.proj4.util.DataUtility"%>
+<%@page import="in.co.rays.proj4.bean.BaseBean"%>
+<%@page import="in.co.rays.proj4.controller.UserListCtl"%>
 <%@page import="in.co.rays.proj4.util.ServletUtility"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
+
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>User List</title>
+<link rel="icon" type="image/png"
+	href="<%=ORSView.APP_CONTEXT%>/img/logo.png" sizes="16x16" />
 </head>
 <body>
-	<%@ include file="Header.jsp"%>
+	<%@include file="Header.jsp"%>
 
 	<jsp:useBean id="bean" class="in.co.rays.proj4.bean.UserBean"
 		scope="request"></jsp:useBean>
@@ -49,10 +50,9 @@
 
 			if (list.size() != 0) {
 			%>
-			
+
 			<input type="hidden" name="pageNo" value="<%=pageNo%>"> <input
 				type="hidden" name="pageSize" value="<%=pageSize%>">
-
 
 			<table style="width: 100%">
 				<tr>
@@ -64,10 +64,12 @@
 						placeholder="Enter Email ID"
 						value="<%=ServletUtility.getParameter("login", request)%>">&emsp;
 
-						<label><b>Role : </b></label> <%=HTMLUtility.getList("roleId", String.valueOf(bean.getRoleId()), roleList)%>
-						<input type="submit" name="operation" value="<%=UserListCtl.OP_SEARCH %>">
-						&nbsp; <input type="submit" name="operation"
-						value="<%=UserListCtl.OP_RESET%>"></td>
+						<label><b>Role : </b></label> <%=HTMLUtility.getList("roleId", String.valueOf(bean.getRoleId()), roleList)%>&emsp;
+
+						<input type="submit" name="operation"
+						value="<%=UserListCtl.OP_SEARCH%>"> &nbsp; <input
+						type="submit" name="operation" value="<%=UserListCtl.OP_RESET%>">
+					</td>
 				</tr>
 			</table>
 			<br>
@@ -98,8 +100,8 @@
 
 				<tr>
 					<td style="text-align: center;"><input type="checkbox"
-						 name="ids" value="<%=bean.getId()%>"
-						<%=(user.getId() == bean.getId() || bean.getRoleId() == RoleBean.ADMIN) ? "disabled" : ""%>>
+						class="case" name="ids" value="<%=bean.getId()%>"
+						<%=(bean.getId() == bean.getId() || bean.getRoleId() == RoleBean.ADMIN)%>>
 					</td>
 					<td style="text-align: center;"><%=index++%></td>
 					<td style="text-align: center; text-transform: capitalize;"><%=bean.getFirstName()%></td>
@@ -110,9 +112,7 @@
 					<td style="text-align: center;"><%=date%></td>
 					<td style="text-align: center; text-transform: capitalize;"><%=roleBean.getName()%></td>
 					<td style="text-align: center;"><a
-						href="UserCtl?id=<%=bean.getId()%>"
-						<%=(user.getId() == bean.getId() || bean.getRoleId() == RoleBean.ADMIN) ? "onclick='return false;'" : ""%>>Edit</a>
-					</td>
+						href="UserCtl?id=<%=bean.getId()%>">Edit</a></td>
 				</tr>
 
 				<%
@@ -149,9 +149,7 @@
 			<%
 			}
 			%>
-			
 		</form>
 	</div>
-
 </body>
 </html>
