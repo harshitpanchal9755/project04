@@ -20,7 +20,7 @@ public interface ORSView { /// ors view is loosecoupling provide karta hai jisse
 	public String MARKSHEET_MERIT_LIST_CTL = APP_CONTEXT + "/ctl/MarksheetMeritListCtl";
 	
 	public String USER_REGISTRATION_VIEW = PAGE_FOLDER + "/UserRegistrationView.jsp";
-	public String USER_REGISTRATION_CTL = APP_CONTEXT + "/ctl/UserRegistrationCtl";
+	public String USER_REGISTRATION_CTL = APP_CONTEXT + "/UserRegistrationCtl";
 	
 	public String USER_LIST_VIEW = PAGE_FOLDER + "/UserListView.jsp";
 	public String USER_LIST_CTL = APP_CONTEXT + "/ctl/UserListCtl";
@@ -86,7 +86,7 @@ public interface ORSView { /// ors view is loosecoupling provide karta hai jisse
 	public String CHANGE_PASSWORD_CTL = APP_CONTEXT + "/ctl/ChangePasswordCtl";
 
 	public String ERROR_VIEW = PAGE_FOLDER + "/ErrorView.jsp";
-	public String ERROR_CTL = APP_CONTEXT + "/ctl//ErrorCtl";
+	public String ERROR_CTL = APP_CONTEXT + "/ctl/ErrorCtl";
     
     
 }

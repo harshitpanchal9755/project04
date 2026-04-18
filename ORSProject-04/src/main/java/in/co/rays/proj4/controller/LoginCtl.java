@@ -86,22 +86,22 @@ public class LoginCtl extends BaseCtl {
 		RoleModel role = new RoleModel();
 		HttpSession session = request.getSession();
 
-		if (OP_SIGN_IN.equalsIgnoreCase(op)) {
-
-			UserBean bean = (UserBean) populateBean(request);
-
-			try {
-				bean = model.authenticate(bean.getLogin(), bean.getPassword());
-
-				if (bean != null) 	{
-					session.setAttribute("user", bean);
-					RoleBean rolebean = role.findBypk(bean.getRoleId());
-
-					if (rolebean != null) {
-						session.setAttribute("role", rolebean.getName());
-					}
-					ServletUtility.redirect(ORSView.WELCOME_CTL, request, response);
-					return;
+			if (OP_SIGN_IN.equalsIgnoreCase(op)) {
+	
+				UserBean bean = (UserBean) populateBean(request);
+	
+				try {
+					bean = model.authenticate(bean.getLogin(), bean.getPassword());
+	
+					if (bean != null) 	{
+						session.setAttribute("user", bean);
+						RoleBean rolebean = role.findBypk(bean.getRoleId());
+	
+						if (rolebean != null) {
+							session.setAttribute("role", rolebean.getName());
+						}
+						ServletUtility.redirect(ORSView.WELCOME_CTL, request, response);
+						return;
 
 				} else {
 					bean = (UserBean) populateBean(request);

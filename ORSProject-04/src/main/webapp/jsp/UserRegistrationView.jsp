@@ -107,7 +107,7 @@
 				<tr>
 					<td></td>
 					<td><input type="submit" name="operation"
-						value="<%=UserRegistrationCtl.OP_SIGN_UP%>"></td>
+						value="<%=UserRegistrationCtl.OP_SIGN_UP%>">&nbsp;<input type = "submit" name = "operation" value="<%=UserRegistrationCtl.OP_RESET%>"></td>
 				</tr>
 			</table>
 

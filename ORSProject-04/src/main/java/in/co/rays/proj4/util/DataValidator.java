@@ -45,20 +45,21 @@ public class DataValidator {
 
 	}
 
-	public static boolean isEmail(String val) {
+    public static boolean isEmail(String val) {
 
-		String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-		if (isNotNull(val)) {
+        String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-			try {
-				return val.matches(emailreg);
-			} catch (NumberFormatException e) {
-			}
-		} else {
-			return false;
-		}
-		return false;
-	}
+        if (isNotNull(val)) {
+            try {
+                return val.matches(emailreg);
+            } catch (NumberFormatException e) {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
+    }
 
 	public static boolean isName(String val) {
 

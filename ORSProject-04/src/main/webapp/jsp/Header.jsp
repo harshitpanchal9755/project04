@@ -8,8 +8,8 @@
 <meta charset="ISO-8859-1">
 <title>header page</title>
 
-<script src="/ORS_Project4/js/checkbox.js"></script>
-<script src="/ORS_Project4/js/datepicker.js"></script>
+<script src="/ORSProject-04/js/checkbox.js"></script>
+<script src="/ORSProject-04/js/datepicker.js"></script>
 
 </head>
 <body>
@@ -62,7 +62,7 @@
 	<b>|</b>
 	<a href="TimetableCtl"><b>Add Timetable</b></a>
 	<b>|</b>
-	<a href="TimetableListCtl"><b>Timetable List</b></a>
+	<a href="<%=ORSView.TIMETABLE_LIST_CTL%>"><b>Timetable List</b></a>
 	<b>|</b>
 	<a href="FacultyCtl"><b>Add Faculty</b></a>
 	<b>|</b>

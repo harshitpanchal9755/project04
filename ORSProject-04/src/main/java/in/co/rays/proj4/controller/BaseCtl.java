@@ -177,7 +177,7 @@ public abstract class BaseCtl extends HttpServlet {
         String op = DataUtility.getString(request.getParameter("operation"));
         if (DataValidator.isNotNull(op) && !op.equalsIgnoreCase(OP_CANCEL) && !op.equalsIgnoreCase(OP_RESET)
                 && !op.equalsIgnoreCase(OP_NEW) && !op.equalsIgnoreCase(OP_DELETE)) {
-            if (validate(request) == false) {
+            if (!validate(request)) {
                 BaseBean bean = (BaseBean) populateBean(request);
                 ServletUtility.setBean(bean, request);
                 ServletUtility.forward(getView(), request, response);
