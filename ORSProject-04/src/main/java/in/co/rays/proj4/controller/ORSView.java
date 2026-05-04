@@ -87,6 +87,15 @@ public interface ORSView { /// ors view is loosecoupling provide karta hai jisse
 
 	public String ERROR_VIEW = PAGE_FOLDER + "/ErrorView.jsp";
 	public String ERROR_CTL = APP_CONTEXT + "/ctl/ErrorCtl";
+	
+	public String DATAIMPORTLOG_VIEW = PAGE_FOLDER + "/DataImportView.jsp";
+	public String DATAIMPORTLOG_CTL = APP_CONTEXT + "/ctl/DataimportlogCtl";
+	
+	public String GEOFENCE_VIEW = PAGE_FOLDER + "/GeofenceView.jsp";
+	public String GEOFENCE_CTL = APP_CONTEXT + "/ctl/GeofenceCtl";
+	
+	public String GEOFENCE_LIST_VIEW = PAGE_FOLDER + "/GeofenceListView.jsp";
+	public String GEOFENCE_LIST_CTL = APP_CONTEXT + "/ctl/GeofenceListCtl";
     
     
 }

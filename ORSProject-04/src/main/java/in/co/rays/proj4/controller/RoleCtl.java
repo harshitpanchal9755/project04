@@ -41,7 +41,7 @@ public class RoleCtl extends BaseCtl {
 		}
 		return pass;
 
-	}
+	 }
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {

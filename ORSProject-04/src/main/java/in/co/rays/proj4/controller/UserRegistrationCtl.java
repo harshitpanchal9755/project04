@@ -91,7 +91,7 @@ public class UserRegistrationCtl extends BaseCtl {
 		}
 
 		if (!request.getParameter("password").equals(request.getParameter("confirmPassword"))) {
-			request.setAttribute("confirmpassword", "password and confirmpassword is same");
+			request.setAttribute("confirmpassword", "password and confirm password is same");
 			pass = false;
 		}
 

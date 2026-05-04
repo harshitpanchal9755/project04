@@ -114,7 +114,7 @@ public class DataValidator {
 	
 	public static boolean isPhoneNo(String val) {
 
-		String phonereg = "^[6-9][0-9]{9}$";
+		String phonereg = "^[6-9]\\d{9}$";
 
 		if (isNotNull(val)) {
 			try {
