@@ -21,6 +21,10 @@ import in.co.rays.proj4.util.ServletUtility;
 @WebServlet(name = "UserListCtl", urlPatterns = { "/ctl/UserListCtl" })
 public class UserListCtl extends BaseCtl {
 
+	/**
+	 * 
+	 *
+	 */
 	@Override
 	protected void preload(HttpServletRequest request) {
 		RoleModel roleModel = new RoleModel();

@@ -16,6 +16,7 @@ import in.co.rays.proj4.model.RoleModel;
 import in.co.rays.proj4.model.UserModel;
 import in.co.rays.proj4.util.DataUtility;
 import in.co.rays.proj4.util.DataValidator;
+import in.co.rays.proj4.util.PropertyReader;
 import in.co.rays.proj4.util.ServletUtility;
 
 @WebServlet("/LoginCtl")
@@ -36,15 +37,15 @@ public class LoginCtl extends BaseCtl {
 		}
 
 		if (DataValidator.isNull(request.getParameter("login"))) {
-			request.setAttribute("login", "Login is required");
+			request.setAttribute("login", PropertyReader.getValue("error.require", "Login ID"));
 			pass = false;
 		}else if(!DataValidator.isEmail(request.getParameter("login"))) {
-			request.setAttribute("login", "Error is email");
+			request.setAttribute("login", "Invalid Login Id");
 			pass = false;
 		}
 
 		if (DataValidator.isNull(request.getParameter("password"))) {
-			request.setAttribute("password", "Password is required");
+			request.setAttribute("password", PropertyReader.getValue("error.require", "Password"));
 			pass = false;
 
 		}

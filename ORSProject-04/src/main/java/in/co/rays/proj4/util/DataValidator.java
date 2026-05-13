@@ -46,8 +46,8 @@ public class DataValidator {
 	}
 
     public static boolean isEmail(String val) {
-
-        String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+                  ///// regix
+        String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"; /// regix
 
         if (isNotNull(val)) {
             try {

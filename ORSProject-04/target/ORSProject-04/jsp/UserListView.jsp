@@ -56,9 +56,13 @@
 
 			<table style="width: 100%">
 				<tr>
+					<td align="center"><label><b>Date Of Birth : </b></label> <input
+						type="date" name="dob"
+						value="<%=ServletUtility.getParameter("dob", request)%>">
+			
 					<td align="center"><label><b>First Name :</b></label> <input
 						type="text" name="firstName" placeholder="Enter First Name"
-						value="<%=ServletUtility.getParameter("firstName", request)%>">&emsp;
+								value="<%=ServletUtility.getParameter("firstName", request)%>">&emsp;
 
 						<label><b>Login Id:</b></label> <input type="text" name="login"
 						placeholder="Enter Email ID"

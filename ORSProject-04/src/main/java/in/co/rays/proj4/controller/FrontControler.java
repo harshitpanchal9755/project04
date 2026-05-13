@@ -17,10 +17,13 @@ import in.co.rays.proj4.util.ServletUtility;
 
 @WebFilter(filterName = "FrontCtl", urlPatterns = { "/ctl/*", "/doc/*" })
 public class FrontControler implements Filter {
-
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		
+	}
+	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("Fctl Do Filter");
 
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
@@ -42,10 +45,7 @@ public class FrontControler implements Filter {
 		}
 	}
 
-	public void init(FilterConfig filterConfig) throws ServletException {
-		
-	}
-
+	@Override
 	public void destroy() {
 		
 	}

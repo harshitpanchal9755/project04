@@ -487,7 +487,7 @@ public class UserModel {
         Connection conn = null;
         ArrayList<UserBean> list = new ArrayList<UserBean>();
 
-        StringBuffer sql = new StringBuffer("select * from st_user where 1=1");
+        StringBuffer sql = new StringBuffer("select * from st_user where 1=1"); // dynamic query banane ke liye hoi ahai
 
         if (bean != null) {
             if (bean.getId() > 0) {

@@ -40,7 +40,7 @@
 
 			<table>
 				<tr>
-					<th align="left">Email Id<span style="color: red">*</span>&nbsp;
+					<th align="right">Email Id<span style="color: red">*</span>&nbsp;
 					</th>&emsp;
 					<td align="center"><input type="text" name="login"
 						placeholder="Enter Email ID Here"
