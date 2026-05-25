@@ -69,7 +69,7 @@ public class BatchProcessingListCtl extends BaseCtl {
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 
 		pageNo = (pageNo == 0) ? 1 : pageNo;
-		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("pageSize")) : pageSize;
+		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
 
 		BatchProcessingBean bean = (BatchProcessingBean) populateBean(request);
 		BatchProcessingModel model = new BatchProcessingModel();

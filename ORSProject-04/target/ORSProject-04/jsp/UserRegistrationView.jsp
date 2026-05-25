@@ -38,7 +38,7 @@
 			<table>
 
 				<tr>
-					<th align="left">First Name<span style="color:red">*</span></th>
+					<th align="left">First Name<span style="color: red">*</span></th>
 					<td><input type="text" name="firstName"
 						placeholder="Enter First Name"
 						value="<%=DataUtility.getStringData(bean.getFirstName())%>"></td>
@@ -46,7 +46,7 @@
 				</tr>
 
 				<tr>
-					<th align="left">Last Name<span style="color:red">*</span></th>
+					<th align="left">Last Name<span style="color: red">*</span></th>
 					<td><input type="text" name="lastName"
 						placeholder="Enter Last Name"
 						value="<%=DataUtility.getStringData(bean.getLastName())%>"></td>
@@ -54,14 +54,15 @@
 				</tr>
 
 				<tr>
-					<th align="left">Login ID<span style="color:red">*</span></th>
-					<td><input type="email" name="login" placeholder="Enter Email Id"
+					<th align="left">Login ID<span style="color: red">*</span></th>
+					<td><input type="email" name="login"
+						placeholder="Enter Email Id"
 						value="<%=DataUtility.getStringData(bean.getLogin())%>"></td>
 					<td style="position: fixed;"><font color="red"><%=ServletUtility.getErrorMessage("login", request)%></font></td>
 				</tr>
 
 				<tr>
-					<th align="left">Password<span style="color:red">*</span></th>
+					<th align="left">Password<span style="color: red">*</span></th>
 					<td><input type="password" name="password"
 						placeholder="Enter Password"
 						value="<%=DataUtility.getStringData(bean.getPassword())%>"></td>
@@ -69,7 +70,7 @@
 				</tr>
 
 				<tr>
-					<th align="left">Confirm Password<span style="color:red">*</span></th>
+					<th align="left">Confirm Password<span style="color: red">*</span></th>
 					<td><input type="password" name="confirmPassword"
 						placeholder="Enter Confirm Password"
 						value="<%=DataUtility.getStringData(bean.getConfirmPassword())%>"></td>
@@ -77,7 +78,7 @@
 				</tr>
 
 				<tr>
-					<th align="left">Date Of Birth<span style="color:red">*</span></th>
+					<th align="left">Date Of Birth<span style="color: red">*</span></th>
 					<td><input type="date" name="dob"
 						value="<%=DataUtility.getStringData(bean.getDob())%>"
 						style="width: 98%"></td>
@@ -85,7 +86,7 @@
 				</tr>
 
 				<tr>
-					<th align="left">Gender<span style="color:red">*</span></th>
+					<th align="left">Gender<span style="color: red">*</span></th>
 					<td>
 						<%
 						HashMap<String, String> map = new HashMap<String, String>();
@@ -98,16 +99,18 @@
 				</tr>
 
 				<tr>
-					<th align="left">Mobile No<span style="color:red">*</span></th>
+					<th align="left">Mobile No<span style="color: red">*</span></th>
 					<td><input type="text" name="mobileNo"
-						placeholder="Enter Mobile No"
+						placeholder="Enter Mobile No" maxlength="10"
 						value="<%=DataUtility.getStringData(bean.getMobileNo())%>"></td>
 					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("mobileNo", request)%></font></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><input type="submit" name="operation"
-						value="<%=UserRegistrationCtl.OP_SIGN_UP%>">&nbsp;<input type = "submit" name = "operation" value="<%=UserRegistrationCtl.OP_RESET%>"></td>
+						value="<%=UserRegistrationCtl.OP_SIGN_UP%>">&nbsp;<input
+						type="submit" name="operation"
+						value="<%=UserRegistrationCtl.OP_RESET%>"></td>
 				</tr>
 			</table>
 

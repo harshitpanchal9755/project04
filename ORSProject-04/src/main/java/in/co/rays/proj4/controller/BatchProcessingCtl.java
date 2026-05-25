@@ -130,7 +130,7 @@ public class BatchProcessingCtl extends BaseCtl {
 
 			} catch (DuplicateException e) {
 				ServletUtility.setBean(bean, request);
-				ServletUtility.setErrorMessage("Email already Exists", request);
+				ServletUtility.setErrorMessage("batchprocessing already Exists", request);
 
 			} catch (ApplicationException e) {
 				e.printStackTrace();

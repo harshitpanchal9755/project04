@@ -104,5 +104,25 @@ public interface ORSView { /// ors view is loosecoupling provide karta hai jisse
 
 	public String BATCHPROCESSING_LIST_VIEW = PAGE_FOLDER + "/BatchProcessingListView.jsp";
 	public String BATCHPROCESSING_LIST_CTL = APP_CONTEXT + "/ctl/BatchProcessingListCtl";
+	
+	public String VIRTUALWALLET_VIEW = PAGE_FOLDER + "/VirtualWalletView.jsp";
+	public String VIRTUALWALLET_CTL = APP_CONTEXT + "/ctl/VirtualWalletCtl";
+	
+	public String VIRTUALWALLET_LIST_VIEW = PAGE_FOLDER + "/VirtualWalletListView.jsp";
+	public String VIRTUALWALLET_LIST_CTL = APP_CONTEXT + "/ctl/VirtualWalletListCtl";
+	
+	public String USERSESSION_VIEW = PAGE_FOLDER + "/UserSessionView.jsp";
+	public String USERSESSION_CTL = PAGE_FOLDER + "/ctl/UserSessionCtl";
+	
+	public String USERSESSION_LIST_VIEW = PAGE_FOLDER + "/UserSessionListView.jsp";
+	public String USERSESSION_LIST_CTL = APP_CONTEXT + "/ctl/UserSessionListCtl";
+	
+	public String VOICEASSISTANT_VIEW = PAGE_FOLDER + "/VoiceAssistantView.jsp";
+	public String VOICEASSISTANT_CTL = APP_CONTEXT + "/ctl/VoiceAssistantCtl";
+	
+	public String VOICEASSISTANT_LIST_VIEW = PAGE_FOLDER + "/VoiceAssistantListView.jsp";
+	public String VOICEASSISTANT_LIST_CTL = APP_CONTEXT + "/ctl/VoiceAssistantListCtl";
+	
+	
 
 }

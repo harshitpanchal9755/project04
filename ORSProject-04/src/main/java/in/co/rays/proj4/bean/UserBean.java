@@ -232,6 +232,6 @@ public class UserBean extends BaseBean {
      */
    
     public String getValue() {
-        return null;
+        return firstName + " " + lastName;
     }
 }

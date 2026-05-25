@@ -10,8 +10,10 @@ in\co\rays\proj4\model\ManagementModel.class
 in\co\rays\proj4\controller\TimetableListCtl.class
 in\co\rays\proj4\model\LoginAttemptModel.class
 in\co\rays\proj4\util\EmailUtility$1.class
+in\co\rays\proj4\model\AccountStatusModel.class
 in\co\rays\proj4\util\JdbcDataSource.class
 in\co\rays\proj4\test\TestMail.class
+in\co\rays\proj4\model\BlockchainModel.class
 in\co\rays\proj4\controller\GeofenceCtl.class
 in\co\rays\proj4\test\TestBatchProcessingModel.class
 in\co\rays\proj4\test\testGeofenceModel.class
@@ -30,6 +32,7 @@ in\co\rays\proj4\bean\DropdownListBean.class
 in\co\rays\proj4\controller\BaseCtl.class
 in\co\rays\proj4\bean\StudentBean.class
 in\co\rays\proj4\model\FacultyModel.class
+in\co\rays\proj4\bean\VirtualWalletBean.class
 in\co\rays\proj4\model\LockerModel.class
 in\co\rays\proj4\controller\MarksheetCtl.class
 in\co\rays\proj4\model\DataMappingModel.class
@@ -63,6 +66,7 @@ in\co\rays\proj4\controller\MarksheetListCtl.class
 in\co\rays\proj4\controller\BatchProcessingListCtl.class
 in\co\rays\proj4\controller\CourseCtl.class
 in\co\rays\proj4\util\DataValidator.class
+in\co\rays\proj4\bean\AccountStatusBean.class
 in\co\rays\proj4\model\TimetableModel.class
 in\co\rays\proj4\model\RevenueModel.class
 in\co\rays\proj4\test\TestRoleModel.class
@@ -72,8 +76,10 @@ in\co\rays\proj4\util\ServletUtility.class
 in\co\rays\proj4\model\GeofenceModel.class
 in\co\rays\proj4\exception\RecordNotFoundException.class
 in\co\rays\proj4\exception\ApplicationException.class
+in\co\rays\proj4\controller\VirtualWalletListCtl.class
 in\co\rays\proj4\model\GiftcardModel.class
 in\co\rays\proj4\bean\GiftcardBean.class
+in\co\rays\proj4\bean\BlockchainBean.class
 in\co\rays\proj4\test\TestCourseModel.class
 in\co\rays\proj4\controller\CollegeListCtl.class
 in\co\rays\proj4\test\TestStudentModel.class
@@ -95,8 +101,10 @@ in\co\rays\proj4\test\TestFacultyModel.class
 in\co\rays\proj4\controller\RoleCtl.class
 in\co\rays\proj4\controller\StudentCtl.class
 in\co\rays\proj4\bean\UserBean.class
+in\co\rays\proj4\model\VirtualWalletModel.class
 in\co\rays\proj4\controller\ForgetPasswordCtl.class
 in\co\rays\proj4\bean\DataImportLogBean.class
+in\co\rays\proj4\controller\VirtualWalletCtl.class
 in\co\rays\proj4\controller\UserCtl.class
 in\co\rays\proj4\model\RoleModel.class
 in\co\rays\proj4\controller\GetMarksheetCtl.class

@@ -14,71 +14,58 @@ package in.co.rays.proj4.bean;
  */
 public class RoleBean extends BaseBean {
 
-    /** Constant representing the Admin role */
-    public static final int ADMIN = 1;
+	private String name;
+	private String description;
 
-    /** Constant representing the Student role */
-    public static final int STUDENT = 2;
+	public static final int ADMIN = 1;
+	public static final int STUDENT = 2;
+	public static final int COLLEGE = 3;
+	public static final int KIOSK = 4;
+	public static final int FACULTY = 5;
 
-    /** Constant representing the College role */
-    public static final int COLLAGE = 3;
+	public String getName() {
+		return name;
+	}
 
-    /** Constant representing the Kiosk role */
-    public static final int KISOK = 4;
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    /** Constant representing the Faculty role */
-    public static final int FACULTY = 5;
+	public String getDescription() {
+		return description;
+	}
 
-    /** Name of the role */
-    private String name;
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    /** Description of the role */
-    private String description;
+	public static int getAdmin() {
+		return ADMIN;
+	}
 
-    /**
-     * Returns the name of the role.
-     *
-     * @return name
-     */
-    public String getName() {
-        return name;
-    }
+	public static int getStudent() {
+		return STUDENT;
+	}
 
-    /**
-     * Sets the name of the role.
-     *
-     * @param name the role name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+	public static int getCollege() {
+		return COLLEGE;
+	}
 
-    /**
-     * Returns the description of the role.
-     *
-     * @return description
-     */
-    public String getDescription() {
-        return description;
-    }
+	public static int getKiosk() {
+		return KIOSK;
+	}
 
-    /**
-     * Sets the description of the role.
-     *
-     * @param description the role description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public static int getFaculty() {
+		return FACULTY;
+	}
 
-    /**
-     * Returns the display value of the bean. Usually used in dropdowns or UI
-     * components.
-     *
-     * @return name as display value
-     */
-    
-    public String getValue() {
-        return name;
-    }
+	public String getKey() {
+		// TODO Auto-generated method stub
+		return id + "";
+	}
+
+	public String getValue() {
+		// TODO Auto-generated method stub
+		return name;
+	}
 }

@@ -8,7 +8,7 @@
 <%@page import="in.co.rays.proj4.util.ServletUtility"%>
 <%@page import="in.co.rays.proj4.controller.ORSView"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +20,8 @@
 <body>
 	<%@include file="Header.jsp"%>
 
-	<jsp:useBean id="bean" class="in.co.rays.proj4.bean.BatchProcessingBean"
-		scope="request"></jsp:useBean>
+	<jsp:useBean id="bean"
+		class="in.co.rays.proj4.bean.BatchProcessingBean" scope="request"></jsp:useBean>
 
 	<div align="center">
 		<h1 align="center" style="margin-bottom: -15; color: navy;">BatchProcessing
@@ -56,17 +56,17 @@
 			<table style="width: 100%">
 				<tr>
 					<td align="center"><label><b>BatchCode : </b></label> <input
-						type="type" name="batchCode" placeholder = "Enter BatchCode"
+						type="type" name="batchCode" placeholder="Enter BatchCode"
 						value="<%=ServletUtility.getParameter("batchCode", request)%>">
-			
-					<td align="left"><label><b>BatchName :</b></label> <input
-						type="text" name="batchName" placeholder="BatchName"
-								value="<%=ServletUtility.getParameter("batchName", request)%>">&emsp;
+
+						&nbsp;&nbsp;<label><b>BatchName :</b></label> <input type="text"
+						name="batchName" placeholder="BatchName"
+						value="<%=ServletUtility.getParameter("batchName", request)%>">&emsp;
 
 						<input type="submit" name="operation"
 						value="<%=BatchProcessingListCtl.OP_SEARCH%>"> &nbsp; <input
-						type="submit" name="operation" value="<%=BatchProcessingListCtl.OP_RESET%>">
-					</td>
+						type="submit" name="operation"
+						value="<%=BatchProcessingListCtl.OP_RESET%>"></td>
 				</tr>
 			</table>
 			<br>
@@ -76,24 +76,21 @@
 					<th width="5%"><input type="checkbox" id="selectall" /></th>
 					<th width="5%">S.No</th>
 					<th width="13%">BatchCode</th>
-					<th width="13%">batchName</th>
-					<th width="23%">totalRecords</th>
+					<th width="13%">BatchName</th>
+					<th width="23%">TotalRecords</th>
 					<th width="10%">Status</th>
-					<th width="10%">edit</th>
-					
+					<th width="10%">Edit</th>
+
 				</tr>
 
 				<%
 				while (it.hasNext()) {
 					bean = (BatchProcessingBean) it.next();
-					
-
 				%>
 
 				<tr>
 					<td style="text-align: center;"><input type="checkbox"
-						class="case" name="ids" value="<%=bean.getId()%>">
-					</td>
+						class="case" name="ids" value="<%=bean.getId()%>"></td>
 					<td style="text-align: center;"><%=index++%></td>
 					<td style="text-align: center; text-transform: capitalize;"><%=bean.getBatchCode()%></td>
 					<td style="text-align: center; text-transform: capitalize;"><%=bean.getBatchName()%></td>

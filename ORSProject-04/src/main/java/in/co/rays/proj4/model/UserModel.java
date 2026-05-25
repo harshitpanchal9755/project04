@@ -90,7 +90,7 @@ public class UserModel {
 
         UserBean beanexist = findByLogin(bean.getLogin());
         if (beanexist != null) {
-            log.warn("duplicate login found");
+            log.warn("duplicate login id Invalid");
             throw new DuplicateException("Login already exist");
         }
 
