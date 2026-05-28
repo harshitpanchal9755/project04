@@ -22,6 +22,10 @@ import in.co.rays.proj4.util.DataValidator;
 import in.co.rays.proj4.util.PropertyReader;
 import in.co.rays.proj4.util.ServletUtility;
 
+/**
+ * @author Harshit Panchal
+ *
+ */
 @WebServlet(name = "UserCtl", urlPatterns = { "/ctl/UserCtl" })
 public class UserCtl extends BaseCtl {
 
@@ -38,6 +42,9 @@ public class UserCtl extends BaseCtl {
 		}
 	}
 
+	/**
+	 *this method is validators
+	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
 

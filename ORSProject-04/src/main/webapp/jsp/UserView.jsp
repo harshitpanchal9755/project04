@@ -52,7 +52,7 @@
 
 			<input type="hidden" name="id" value="<%=bean.getId()%>"> <input
 				type="hidden" name="createdBy" value="<%=bean.getCreatedBy()%>">
-			<input type="hidden" name="modifiedBy"
+			<input type="hidden" name="modifiedBy"R
 				value="<%=bean.getModifiedBy()%>"> <input type="hidden"
 				name="createdDatetime"
 				value="<%=DataUtility.getTimestamp(bean.getCreatedDateTime())%>">

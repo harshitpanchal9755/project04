@@ -134,44 +134,42 @@
 	<b>|</b>
 
 	<!-- VirtualWallet -->
-	<a href="<%=ORSView.VIRTUALWALLET_CTL%>"><b>Add
-			VirtualWallet</b></a>
+	<a href="<%=ORSView.VIRTUALWALLET_CTL%>"><b>Add VirtualWallet</b></a>
 	<b>|</b>
 
 	<a href="<%=ORSView.VIRTUALWALLET_LIST_CTL%>"><b>VirtualWallet
 			List</b></a>
 	<b>|</b>
-	
-	<a href = "<%=ORSView.VOICEASSISTANT_CTL %>"><b>Add VoiceAssistant</b></a>
+
+	<a href="<%=ORSView.VOICEASSISTANT_CTL%>"><b>Add VoiceAssistant</b></a>
 	<b>|</b>
-	
-	<a href = "<%=ORSView.VOICEASSISTANT_LIST_CTL %>"><b>VoiceAssistant List</b></a>
+
+	<a href="<%=ORSView.VOICEASSISTANT_LIST_CTL%>"><b>VoiceAssistant
+			List</b></a>
 	<b>|</b>
-	
+
 
 	<!-- Profile -->
 	<a href="<%=ORSView.MY_PROFILE_CTL%>"><b>My Profile</b></a>
 	<b>|</b>
 
-	<a href="<%=ORSView.CHANGE_PASSWORD_CTL%>"><b>Change
-			Password</b></a>
+	<a href="<%=ORSView.CHANGE_PASSWORD_CTL%>"><b>Change Password</b></a>
 	<b>|</b>
 
+
 	<!-- Java Doc -->
-	<a target="blank" href="<%=ORSView.JAVA_DOC%>"><b>Java
-			Doc</b></a>
+	<a target="blank" href="<%=ORSView.JAVA_DOC%>"><b>Java Doc</b></a>
 	<b>|</b>
 
 	<!-- Logout -->
-	<a
-		href="<%=ORSView.LOGIN_CTL%>?operation=<%=LoginCtl.OP_LOG_OUT%>">
+	<a href="<%=ORSView.LOGIN_CTL%>?operation=<%=LoginCtl.OP_LOG_OUT%>">
 		<b>Logout</b>
 	</a>
 
 	<%
 	}
 	%>
-	
+
 
 	<%
 	if (user.getRoleId() == RoleBean.STUDENT) {
@@ -185,19 +183,18 @@
 
 	<a href="<%=ORSView.MY_PROFILE_CTL%>"><b>My Profile</b></a>
 	<b>|</b>
-	
-	<a href = "<%=ORSView.VIRTUALWALLET_CTL %>"><b>Add VirtualWallet</b></a>
-	<b>|</b>
-	
-	<a href = "<%=ORSView.VIRTUALWALLET_LIST_CTL %>"><b>VirtualWallet List</b></a>
+
+	<a href="<%=ORSView.VIRTUALWALLET_CTL%>"><b>Add VirtualWallet</b></a>
 	<b>|</b>
 
-	<a href="<%=ORSView.CHANGE_PASSWORD_CTL%>"><b>Change
-			Password</b></a>
+	<a href="<%=ORSView.VIRTUALWALLET_LIST_CTL%>"><b>VirtualWallet
+			List</b></a>
 	<b>|</b>
 
-	<a
-		href="<%=ORSView.LOGIN_CTL%>?operation=<%=LoginCtl.OP_LOG_OUT%>">
+	<a href="<%=ORSView.CHANGE_PASSWORD_CTL%>"><b>Change Password</b></a>
+	<b>|</b>
+
+	<a href="<%=ORSView.LOGIN_CTL%>?operation=<%=LoginCtl.OP_LOG_OUT%>">
 		<b>Logout</b>
 	</a>
 

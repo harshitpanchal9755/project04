@@ -93,7 +93,7 @@
 
 			<table border="1" width="100%" style="border-collapse: collapse;">
 
-				<tr style="background-color: lightgray;">
+				<tr style="background-color: #e1e6f1e3;">
 
 					<th><input type="checkbox" id="selectall"></th>
 

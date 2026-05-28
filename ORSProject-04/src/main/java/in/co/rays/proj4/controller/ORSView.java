@@ -123,6 +123,10 @@ public interface ORSView { /// ors view is loosecoupling provide karta hai jisse
 	public String VOICEASSISTANT_LIST_VIEW = PAGE_FOLDER + "/VoiceAssistantListView.jsp";
 	public String VOICEASSISTANT_LIST_CTL = APP_CONTEXT + "/ctl/VoiceAssistantListCtl";
 	
+	public String BLOCKCHAIN_VIEW = PAGE_FOLDER + "/BlockChainView.jsp";
+	public String BLOCKCHAIN_CTL = APP_CONTEXT + "/ctl/BlockChainCtl";
 	
+	public String BLOCKCHAIN_LIST_VIEW = PAGE_FOLDER + "/BlockChainListView.jsp";
+	public String BLOCKCHAIN_LIST_CTL = APP_CONTEXT + "/ctl/BlockListCtl";
 
 }
