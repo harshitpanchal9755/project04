@@ -59,6 +59,8 @@
 			List<UserBean> list = (List<UserBean>) ServletUtility.getList(request);
 
 			Iterator<UserBean> it = list.iterator();
+			
+			if (list.size() != 0) {
 			%>
 
 			<input type="hidden" name="pageNo" value="<%=pageNo%>"> <input
@@ -86,10 +88,6 @@
 			</table>
 
 			<br>
-
-			<%
-			if (list != null && list.size() > 0) {
-			%>
 
 			<table border="1" width="100%" style="border-collapse: collapse;">
 
@@ -159,7 +157,7 @@
 
 					<td align="center"><%=date%></td>
 
-					<td align="center" style="text-transform: capitalize;"><%=roleBean != null ? roleBean.getName() : "N/A"%></td>
+					<td align="center" style="text-transform: capitalize;"><%=roleBean.getName()%></td>
 
 					<td align="center"><a
 						href="<%=ORSView.USER_CTL%>?id=<%=bean.getId()%>"
@@ -200,10 +198,6 @@
 			<%
 			} else {
 			%>
-
-			<h3>
-				<font color="red"> No Record Found </font>
-			</h3>
 
 			<input type="submit" name="operation"
 				value="<%=UserListCtl.OP_BACK%>">

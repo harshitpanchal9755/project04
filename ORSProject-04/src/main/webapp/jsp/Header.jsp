@@ -147,6 +147,12 @@
 	<a href="<%=ORSView.VOICEASSISTANT_LIST_CTL%>"><b>VoiceAssistant
 			List</b></a>
 	<b>|</b>
+	
+	<a href = "<%=ORSView.INSURANCEAPP_CTL %>"><b> Add InsuranceApp</b></a>
+	<b>|</b>
+	
+	<a href = "<%=ORSView.INSURANCEAPP_LIST_CTL %>"><b>InsuranceApp List</b></a>
+	<b>|</b>
 
 
 	<!-- Profile -->
@@ -155,6 +161,7 @@
 
 	<a href="<%=ORSView.CHANGE_PASSWORD_CTL%>"><b>Change Password</b></a>
 	<b>|</b>
+
 
 
 	<!-- Java Doc -->

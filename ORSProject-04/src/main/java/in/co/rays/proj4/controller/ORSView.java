@@ -129,4 +129,10 @@ public interface ORSView { /// ors view is loosecoupling provide karta hai jisse
 	public String BLOCKCHAIN_LIST_VIEW = PAGE_FOLDER + "/BlockChainListView.jsp";
 	public String BLOCKCHAIN_LIST_CTL = APP_CONTEXT + "/ctl/BlockListCtl";
 
+	public String INSURANCEAPP_VIEW = PAGE_FOLDER + "/InsuranceAppView.jsp";
+	public String INSURANCEAPP_CTL = APP_CONTEXT + "/ctl/InsuranceAppCtl";
+	
+	public String INSURANCEAPP_LIST_VIEW = PAGE_FOLDER + "/InsuranceAppListView.jsp";
+	public String INSURANCEAPP_LIST_CTL = APP_CONTEXT + "/ctl/InsuranceAppListCtl";
+	
 }
